@@ -8,6 +8,7 @@ import Explore from './Pages/Explore/Explore';
 import LocationModal from './Pages/Modal/LocationModal';
 import TagModal from './Pages/Modal/TagModal';
 import CareerModal from './Pages/Modal/CareerModal';
+import Login from './Pages/Login/Login';
 
 function Routes() {
   return (
@@ -19,8 +20,11 @@ function Routes() {
         <Route exact path="/explore" component={Explore} />
         <Route exact path="/explore/posting/posting_list=:id?category=id" />
       </Switch>
+      {/* 
+      <Login />
       <TagModal />
       <LocationModal />
+    */}
       <Footer />
     </Router>
   );

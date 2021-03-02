@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Routes from './Routes';
 // import {Provider} from './context';
-import GlobalStyle from './GlobalStyles';
+import GlobalStyle from './Styles/GlobalStyles';
 import {ThemeProvider} from 'styled-components';
-import theme from "./theme";
-import './index.css';
+import theme from './Styles/theme';
 
 ReactDOM.render(
   <>

@@ -1,0 +1,140 @@
+[
+  {
+    "apply": {
+      "stepFour": "3",
+      "stepOne": "1",
+      "stepThree": "2",
+      "stepTwo": "2"
+    },
+    "book": [
+      {
+        "id": 1,
+        "category": "개발",
+        "city": "서울",
+        "company": "라카불린",
+        "end": "2021-04-03 00:00:00",
+        "image": "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        "state": "강남",
+        "subCategory": "서버 개발자",
+        "tags": ["#연봉업계평균이상", "#51~300명", "#출산휴가", "#휴게실"],
+        "title": "Android Developer"
+      },
+      {
+        "id": 2,
+        "category": "개발",
+        "city": "서울",
+        "company": "그레이스풀레인",
+        "end": "2021-04-03 00:00:00",
+        "image": "https://static.wanted.co.kr/images/company/10131/hhfmkgvy3t27ywst__1080_790.jpg",
+        "state": "강남",
+        "subCategory": "프론트엔드 개발자",
+        "tags": ["#연봉업계평균이상", "#50명이하", "#위워크"],
+        "title": "웹 프론트엔드 개발자"
+      },
+      {
+        "id": 3,
+        "category": "개발",
+        "city": "서울",
+        "company": "채현테크",
+        "end": "2021-04-03 00:00:00",
+        "image": "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=954&q=80",
+        "state": "영등포",
+        "subCategory": "웹 개발자",
+        "tags": ["#연봉상위1%", "#50명이하", "#육아휴직", "#헬스장"],
+        "title": "Window 개발자"
+      },
+      {
+        "id": 4,
+        "category": "개발",
+        "city": "서울",
+        "company": "글렌오렌지",
+        "end": "2021-04-03 00:00:00",
+        "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80",
+        "state": "강남",
+        "subCategory": "데이터 엔지니어",
+        "tags": ["#연봉상위2~5%", "#50명이하", "#휴게실"],
+        "title": "Database Engineer"
+      },
+      {
+        "id": 5,
+        "category": "개발",
+        "city": "서울",
+        "company": "갭투스",
+        "end": "2021-04-03 00:00:00",
+        "image": "https://images.unsplash.com/photo-1514971126075-758e7d825812?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1566&q=80",
+        "state": "영등포",
+        "subCategory": "웹 개발자",
+        "tags": ["#연봉업계평균이상", "#50명이하", "#출산휴가", "#수유실"],
+        "title": "iOS 개발자"
+      },
+      {
+        "id": 6,
+        "category": "개발",
+        "city": "서울",
+        "company": "글렌크로낙",
+        "end": "2021-04-03 00:00:00",
+        "image": "https://images.unsplash.com/photo-1564069114553-7215e1ff1890?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",
+        "state": "강남",
+        "subCategory": "웹 개발자",
+        "tags": ["#연봉상위6~10%", "#50명이하", "#유연근무", "#헬스장"],
+        "title": "안드로이드 개발자"
+      }
+    ],
+    "like": [
+      {
+        "id": 1,
+        "city": "서울",
+        "company": "헤나시",
+        "image": "https://images.unsplash.com/photo-1564069114553-7215e1ff1890?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",
+        "state": "강남",
+        "title": "서버개발자"
+      },
+      {
+        "id": 2,
+        "city": "서울",
+        "company": "라카불린",
+        "image": "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        "state": "강남",
+        "title": "Android Developer"
+      },
+      {
+        "id": 3,
+        "city": "서울",
+        "company": "갭투스",
+        "image": "https://images.unsplash.com/photo-1514971126075-758e7d825812?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1566&q=80",
+        "state": "영등포",
+        "title": "Database Engineer"
+      },
+      {
+        "id": 4,
+        "city": "서울",
+        "company": "Petsi",
+        "image": "https://images.unsplash.com/photo-1500130695625-8aa9b575c62a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80",
+        "state": "영등포",
+        "title": "백엔드 개발자"
+      },
+      {
+        "id": 5,
+        "city": "서울",
+        "company": "Petsi",
+        "image": "https://images.unsplash.com/photo-1500130695625-8aa9b575c62a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80",
+        "state": "영등포",
+        "title": "웹 풀스택 개발자"
+      },
+      {
+        "id": 6,
+        "city": "서울",
+        "company": "갭투스",
+        "image": "https://images.unsplash.com/photo-1514971126075-758e7d825812?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1566&q=80",
+        "state": "영등포",
+        "title": "iOS 개발자"
+      }
+    ],
+    "user": {
+      "email": "asdzx000@hanmail.net",
+      "name": "김채현",
+      "phoneNumber": null,
+      "profile": ""
+    }
+  }
+]

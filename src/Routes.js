@@ -11,6 +11,7 @@ import CareerModal from './Pages/Modal/CareerModal';
 import Login from './Pages/Login/Login';
 import CV from './Pages/CV/CV';
 import CVwrite from './Pages/CV/CVwrite';
+import JobDetail from './Pages/JobDetail/JobDetail';
 
 function Routes() {
   return (
@@ -23,6 +24,8 @@ function Routes() {
         <Route exact path="/" component={Newintro} />
         <Route exact path="/cv" component={CV} />
         <Route exact path="/cv/write" component={CVwrite} />
+        <Route exact path="/detail/" component={JobDetail} />
+        <Route exact path="/detail/:id" component={JobDetail} />
       </Switch>
       {/* 
       <Login />

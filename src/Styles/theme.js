@@ -87,6 +87,36 @@ const theme = {
     'margin-top': '200px 200px',
     'z-index': '120',
   },
+
+  WhiteBox: {
+    border: '1px solid #e1e2e3',
+    ' background-color': '#ffffff',
+  },
+
+  profileContainer: {
+    display: 'flex',
+    'flex-direction': 'column',
+    'align-items': 'center',
+    'min-height': '100vh',
+    'padding-top': '50px',
+    'padding-bottom': '100px',
+    'background-color': '#f7f7f9',
+    color: '#333333',
+  },
+
+  profileSection: {
+    display: 'flex',
+    'flex-direction': 'row',
+    'justify-content': 'space-between',
+    width: '1000px',
+  },
+
+  pageTitle: {
+    width: '1000px',
+    padding: '50px 0 20px',
+    'font-size': '20px',
+    'font-weight': '700',
+  },
 };
 
 export default theme;

@@ -19,6 +19,7 @@ const BoardProvider = ({ children }) => {
     tagNum: 0,
     locationNum: 0,
   });
+  const [userInfo, setUserInfo] = useState();
 
   useEffect(() => {
     tagModalRequest();
@@ -126,6 +127,40 @@ const BoardProvider = ({ children }) => {
     tagModalRequest();
   };
 
+  const fetchUserInfo = () => {
+    //목데이터
+    axios({
+      method: 'GET',
+      url: '/data/forLayout.json',
+    }).then(res => {
+      console.log(res);
+      setUserInfo(res.data.user);
+    });
+
+    //채현님 통신
+    // axios({
+    //   method: 'GET',
+    //   url: 'http://10.58.5.159:8000/apply',
+    // }).then(res => {
+    //   console.log(res);
+    //   setUserInfo(res.data.user);
+    // });
+  };
+
+  const handleProfileEdit = (name, email, phoneNumber) => {
+    console.log('context', name, email, phoneNumber);
+
+    const newProfile = {
+      name,
+      email,
+      phoneNumber,
+    };
+
+    setUserInfo(newProfile);
+
+    //백엔드 POST fetch
+  };
+
   return (
     <BoardContext.Provider
       value={{
@@ -136,10 +171,13 @@ const BoardProvider = ({ children }) => {
         tagData,
         modalNum,
         categoryData,
+        userInfo,
         handleTagModal,
         handleLocationModal,
         handleModal,
         fetchFirstData,
+        fetchUserInfo,
+        handleProfileEdit,
       }}
     >
       {children}

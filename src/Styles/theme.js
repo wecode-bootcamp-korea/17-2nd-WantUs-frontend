@@ -62,6 +62,25 @@ const theme = {
     height: 'auto',
     outline: 'none',
     border: 'none',
+    fontContent: "'Noto Sans KR', sans-serif",
+  },
+
+  TagUl: {
+    display: 'flex',
+    width: '100%',
+    'flex-wrap': 'wrap',
+    'margin-bottom': '50px',
+  },
+
+  TagLi: {
+    padding: '9px 14px',
+    margin: '0 6px 10px 0',
+    'font-size': '12px',
+    'font-weight': '500',
+    ' line-height': '1',
+    ' background-color': '#f3f5f8',
+    ' border-radius': '25px',
+    ' cursor': 'pointer',
   },
   showModaStyle: {
     position: 'absolute',

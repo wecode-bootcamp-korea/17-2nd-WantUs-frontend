@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "프론트엔드 엔지니어",
+    "company": "위코드소사이어티",
+    "city": "서울",
+    "district": "서초구",
+    "detailAddress": "서초대로 77길 17",
+    "latitude": 37.5006226,
+    "longitude": 127.0253673,
+    "tags": [
+      "연봉업계평균이상",
+      "인원급성장",
+      "50명이하",
+      "설립3년이하",
+      "유연근무",
+      "음료",
+      "간식",
+      "건강검진",
+      "IT, 컨텐츠"
+    ],
+    "img": "https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1334&q=80",
+    "bonus": 1000000,
+    "like": 42,
+    "deadline": "2021년 3월 21일",
+    "logoSrc": "https://images.unsplash.com/photo-1569982175971-d92b01cf8694?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OXx8Y29sb3J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "category": "IT, 컨텐츠",
+    "user": "saemsol yoo"
+  }
+]

@@ -99,6 +99,7 @@ const NavContainer = styled.div`
   height: 50px;
   background-color: white;
   border-bottom: 1px solid lightgray;
+  z-index: 1000;
 `;
 
 const NavLogo = styled.div`

@@ -42,38 +42,40 @@ class Nav extends React.Component {
     return (
       <>
         <NavContainer>
-          <NavLogo onMouseEnter={this.handleCategoryMouseHover}>
-            <span>wantus</span>
-          </NavLogo>
-          <TextBox>
-            <Menu
-              onClick={this.goToMain}
-              onMouseEnter={this.handleCategoryMouseHover}
-            >
-              탐색
-            </Menu>
-            <Menu onMouseEnter={this.handleCategoryMouseHover}>
-              커리어 성장
-            </Menu>
-            <Menu onClick={this.goToMain}>직군별 연봉</Menu>
-            <Menu onClick={this.goToMain}>이력서</Menu>
-            <Menu onClick={this.goToMain}>매치업</Menu>
-            <Menu onClick={this.goToMain}>프리랜서</Menu>
-          </TextBox>
-          <IconBox>
-            <Button>
-              <AiOutlineSearch size="24" />
-            </Button>
-            <Button>
-              <VscBell size="24" />
-            </Button>
-            <Button>
-              <RiAccountCircleFill size="24" />
-            </Button>
-            <Button>
-              <CompanyService>기업서비스</CompanyService>
-            </Button>
-          </IconBox>
+          <NavmainBox>
+            <NavLogo onMouseEnter={this.handleCategoryMouseHover}>
+              <span>wantus</span>
+            </NavLogo>
+            <TextBox>
+              <Menu
+                onClick={this.goToMain}
+                onMouseEnter={this.handleCategoryMouseHover}
+              >
+                탐색
+              </Menu>
+              <Menu onMouseEnter={this.handleCategoryMouseHover}>
+                커리어 성장
+              </Menu>
+              <Menu onClick={this.goToMain}>직군별 연봉</Menu>
+              <Menu onClick={this.goToMain}>이력서</Menu>
+              <Menu onClick={this.goToMain}>매치업</Menu>
+              <Menu onClick={this.goToMain}>프리랜서</Menu>
+            </TextBox>
+            <IconBox>
+              <Button>
+                <AiOutlineSearch size="24" />
+              </Button>
+              <Button>
+                <VscBell size="24" />
+              </Button>
+              <Button>
+                <RiAccountCircleFill size="24" />
+              </Button>
+              <Button>
+                <CompanyService>기업서비스</CompanyService>
+              </Button>
+            </IconBox>
+          </NavmainBox>
         </NavContainer>
         {this.state.hovervalue === '탐색' && (
           <NavDetail
@@ -102,19 +104,25 @@ const NavContainer = styled.div`
   z-index: 1000;
 `;
 
+const NavmainBox = styled.div`
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const NavLogo = styled.div`
   width: 74px;
-  height: 21px;
   font-size: 23px;
   font-weight: bold;
-  margin-left: 50px;
+  margin-right: 30px;
 `;
 
 const TextBox = styled.div`
   height: 21px;
   font-size: 14px;
   line-height: 20px;
-  margin-top: 5px;
+
   li {
     text-decoration: none;
     font-weight: bold;
@@ -129,10 +137,10 @@ const IconBox = styled.div`
   font-size: 14px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const CompanyService = styled.button`
-  padding: 0 10px;
   width: 90px;
   height: 30px;
   line-height: 30px;
@@ -157,13 +165,13 @@ const Button = styled.button`
 const Menu = styled.li`
   &:hover {
     border-bottom: solid 2px gray;
-    height: 33.5px;
+    height: 37px;
     z-index: 2010;
   }
 
   &:active {
     border-bottom: solid 2px #2d5bff;
-    height: 33.5px;
+    height: 37px;
     z-index: 2010;
   }
 `;

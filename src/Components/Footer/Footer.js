@@ -11,7 +11,7 @@ class Footer extends Component {
             <FooterLogo>
               <Img
                 alt="footerlogo"
-                src={process.env.PUBLIC_URL + '/images/footer/logo_wanted.png'}
+                src={process.env.PUBLIC_URL + '/images/footer/logo.png'}
               />
             </FooterLogo>
             <TextMenuDetail>
@@ -27,12 +27,13 @@ class Footer extends Component {
               return <option>{index}</option>;
             })}
           </Select>
+
+          <TextInfo>
+            {FOOTERDATA[2].map(index => {
+              return <Paragraph>{index}</Paragraph>;
+            })}
+          </TextInfo>
         </TextContainer>
-        <TextInfo>
-          {FOOTERDATA[2].map(index => {
-            return <Paragraph>{index}</Paragraph>;
-          })}
-        </TextInfo>
       </FooterContainer>
     );
   }
@@ -51,13 +52,12 @@ const FooterContainer = styled.footer`
 `;
 
 const TextContainer = styled.div`
-  width: 90%;
-  margin: 0 auto 25px 405px;
-  position: relative;
+  width: 1000px;
+  margin: 0 auto 25px;
 `;
 
 const TextMenu = styled.div`
-  width: 825px;
+  width: 625px;
   height: 36px;
   float: left;
   display: flex;
@@ -90,7 +90,7 @@ const Select = styled.select`
 const TextInfo = styled.div`
   width: 1024px;
   height: 60px;
-  padding: 0px 57px 25px 405px;
+  margin-top: 40px;
 `;
 
 const Paragraph = styled.p`
@@ -111,6 +111,6 @@ const FooterLogo = styled.div`
 `;
 
 const Img = styled.img`
-  width: 100px;
+  width: 120px;
   height: 16px;
 `;

@@ -7,27 +7,28 @@ class Footer extends Component {
     return (
       <FooterContainer>
         <TextContainer>
-          <TextMenu>
-            <FooterLogo>
-              <Img
-                alt="footerlogo"
-                src={process.env.PUBLIC_URL + '/images/footer/logo.png'}
-              />
-            </FooterLogo>
-            <TextMenuDetail>
-              <TextDetail>
-                {FOOTERDATA[0].map(index => {
-                  return <Context>{index}</Context>;
-                })}
-              </TextDetail>
-            </TextMenuDetail>
-          </TextMenu>
-          <Select>
-            {FOOTERDATA[1].map(index => {
-              return <option>{index}</option>;
-            })}
-          </Select>
-
+          <TopContainer>
+            <TextMenu>
+              <FooterLogo>
+                <Img
+                  alt="footerlogo"
+                  src={process.env.PUBLIC_URL + '/images/footer/logo.png'}
+                />
+              </FooterLogo>
+              <TextMenuDetail>
+                <TextDetail>
+                  {FOOTERDATA[0].map(index => {
+                    return <Context>{index}</Context>;
+                  })}
+                </TextDetail>
+              </TextMenuDetail>
+            </TextMenu>
+            <Select>
+              {FOOTERDATA[1].map(index => {
+                return <option>{index}</option>;
+              })}
+            </Select>
+          </TopContainer>
           <TextInfo>
             {FOOTERDATA[2].map(index => {
               return <Paragraph>{index}</Paragraph>;
@@ -54,6 +55,13 @@ const FooterContainer = styled.footer`
 const TextContainer = styled.div`
   width: 1000px;
   margin: 0 auto 25px;
+`;
+
+const TopContainer = styled.div`
+  width: 1000px;
+  margin: 0 auto 25px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const TextMenu = styled.div`

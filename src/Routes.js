@@ -7,7 +7,7 @@ import Footer from './Components/Footer/Footer';
 function Routes() {
   return (
     <Router>
-      {/* <Nav /> */}
+      <Nav />
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/" component={Nav} />

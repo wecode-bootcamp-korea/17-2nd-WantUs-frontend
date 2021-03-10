@@ -25,6 +25,44 @@ const theme = {
     'font-size': '14px',
     opacity: '0.5',
   },
+  modalStyle: {
+    top: '0',
+    width: '300px',
+    height: '450px',
+    'z-index': '5',
+    'border-radius': '4px',
+    border: '1px solid #DDDDDD',
+    margin: '40px',
+    'box-shadow': '20px',
+    'align-self': 'center',
+  },
+  borderStyle: {
+    border: '1px solid #DDDDDD',
+  },
+  widthHeightAuto: {
+    width: 'auto',
+    height: 'auto',
+  },
+  itemStyle: {
+    display: 'inline-block',
+    margin: '10px 10px',
+    padding: '5px',
+  },
+  border1pxStyle: {
+    border: '1px solid #DDDDDD',
+  },
+  categoryStyle: {
+    'align-items': 'center',
+    'text-align': 'center',
+    'line-height': '35px',
+    border: '0.5px solid ${theme.lightGray}',
+    'border-radius': '17px',
+    color: 'black',
+    width: 'auto',
+    height: 'auto',
+    outline: 'none',
+    border: 'none',
+  },
 };
 
 export default theme;

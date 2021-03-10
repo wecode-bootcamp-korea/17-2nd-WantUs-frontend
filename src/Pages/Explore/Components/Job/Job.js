@@ -73,7 +73,7 @@ const Job = () => {
       <Loding className="loading">
         <Button onClick={loadMore} ref={pageEndPoint}>
           More
-          <img className="loadingImage" src="Loading_Log" alt="loading" />
+          <img className="loadingImage" src={Loading_Log} alt="loading" />
         </Button>
       </Loding>
     </Scroll>
@@ -105,5 +105,6 @@ const Loding = styled.div`
     height: 50px;
   }
 `;
-
-const Button = styled.div``;
+const Button = styled.div`
+  margin: 5px;
+`;

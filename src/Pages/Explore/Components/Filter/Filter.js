@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import theme from '../../../../Styles/theme';
 import { GoTriangleDown } from 'react-icons/go';
+import BoardContext from '../../../../BoardContext';
 
 function Filter() {
+  const { handleModal, categoryData } = useContext(BoardContext);
+  const handleClickedModal = id => {
+    handleModal(id);
+  };
+
   return (
     <FilterContainer>
       <FilterButtonContainer>
         <div className="btnContainer">
           {filterData.map(data => {
             return (
-              <FilterButton key={data.id}>
+              <FilterButton
+                key={data.id}
+                onClick={() => handleClickedModal(data.id)}
+              >
                 {data.classification}
                 <FilterContent>{data.content}</FilterContent>
                 <GoTriangleDown size={'10px'} />
@@ -22,7 +31,9 @@ function Filter() {
           <PrioritySelect>
             {subFilterData.map(data => {
               return (
-                <PriorityOption value={data.id}>{data.content}</PriorityOption>
+                <PriorityOption value={data.id} key={data.id}>
+                  {data.content}
+                </PriorityOption>
               );
             })}
           </PrioritySelect>
@@ -44,7 +55,8 @@ const FilterButtonContainer = styled.div`
   margin: 20px 0px 20px;
 `;
 
-const FilterButton = styled.button`
+const FilterButton = styled.div`
+  display: inline-block;
   border-radius: 5px;
   border: 0.5px solid ${theme.darkGray};
   padding: 13px 15px;
@@ -71,6 +83,10 @@ const PrioritySelect = styled.select`
 
 const PriorityOption = styled.option`
   ${theme.priorityStyle}
+`;
+
+const ModalContainer = styled.div`
+  z-index: 8;
 `;
 
 const filterData = [

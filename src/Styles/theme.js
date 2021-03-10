@@ -63,6 +63,11 @@ const theme = {
     outline: 'none',
     border: 'none',
   },
+  showModaStyle: {
+    position: 'absolute',
+    'margin-top': '200px 200px',
+    'z-index': '120',
+  },
 };
 
 export default theme;

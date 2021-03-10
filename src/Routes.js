@@ -17,10 +17,10 @@ function Routes() {
         <Route exact path="/" component={Main} />
         <Route exact path="/newintro" component={Newintro} />
         <Route exact path="/explore" component={Explore} />
+        <Route exact path="/explore/posting/posting_list=:id?category=id" />
       </Switch>
-      {/* <TagModal />
+      <TagModal />
       <LocationModal />
-      <CareerModal /> */}
       <Footer />
     </Router>
   );

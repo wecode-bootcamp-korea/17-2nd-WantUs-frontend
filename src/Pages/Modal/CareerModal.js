@@ -1,14 +1,9 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import theme from '../../Styles/theme';
-import BoardContext from '../../BoardContext';
 import ModalHeader from './ModalHeader';
 
 function CareerModal() {
-  const {
-    filterData: { careerData },
-  } = useContext(BoardContext);
-
   return (
     <CareerModalContainer>
       <ModalHeader />

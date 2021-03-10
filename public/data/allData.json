@@ -1,0 +1,77 @@
+{
+  "message": "SUCCESS",
+  "data": {
+    "postings": [
+      {
+        "id": 4,
+        "like": 0,
+        "title": "모집합니다4",
+        "company": "이백문방구",
+        "state": "서울",
+        "county": "영등포",
+        "reward": "4.00",
+        "img": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80"
+      },
+      {
+        "id": 2,
+        "like": 0,
+        "title": "모집합니다2",
+        "company": "멋쟁이은우처럼",
+        "state": "서울",
+        "county": "종로",
+        "reward": "2.00",
+        "img": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80"
+      },
+      {
+        "id": 1,
+        "like": 0,
+        "title": "모집합니다1",
+        "company": "멋쟁이은우처럼",
+        "state": "서울",
+        "county": "종로",
+        "reward": "1.00",
+        "img": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80"
+      }
+    ],
+    "locations": {
+      "state": [
+        {
+          "id": 1,
+          "name": "서울"
+        }
+      ],
+      "county": [
+        {
+          "id": 1,
+          "name": "종로"
+        },
+        {
+          "id": 2,
+          "name": "영등포"
+        }
+      ]
+    },
+    "tags": [
+      {
+        "id": 1,
+        "name": "연봉수준",
+        "tagDetails": [
+          {
+            "id": 1,
+            "name": "#연봉업계평균이상"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "인원수",
+        "tagDetails": [
+          {
+            "id": 2,
+            "name": "#50명이하"
+          }
+        ]
+      }
+    ]
+  }
+}

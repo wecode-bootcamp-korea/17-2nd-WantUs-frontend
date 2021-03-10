@@ -6,7 +6,7 @@ import BoardContext from '../../BoardContext';
 import TagSelector from './TagSelector';
 
 const TagModalCategory = () => {
-  const { filterData } = useContext(BoardContext);
+  const { tagData } = useContext(BoardContext);
   const [selectedTag, setSelectedTag] = useState([]);
 
   const genColor = () => {
@@ -33,9 +33,8 @@ const TagModalCategory = () => {
         </h3>
         <h3>1. 카테고리 선택</h3>
         <CategoryItemContainer>
-          {filterData.tagData.length >= 1 &&
-            filterData.locationData.length >= 1 &&
-            filterData.tagData[0].map(tag => {
+          {tagData.length >= 1 &&
+            tagData.map(tag => {
               return (
                 <CategoryItem
                   key={tag.id}

@@ -4,8 +4,8 @@ import BoardContext from '../../BoardContext';
 import theme from '../../Styles/theme';
 
 const TagSelector = ({ detailTagInfo }) => {
-  const { id, tagDetail } = detailTagInfo;
-  const { handleTagModal } = useContext(BoardContext);
+  const { tagDetails } = detailTagInfo;
+  const { handleTagModal, handleModal } = useContext(BoardContext);
   const [selectedTagList, setSelectedTagList] = useState([]);
 
   useEffect(() => {}, [selectedTagList]);
@@ -28,8 +28,8 @@ const TagSelector = ({ detailTagInfo }) => {
     <TagSelectorContainer>
       <TagSelectorItem>
         <h3>2. 태그선택</h3>
-        {tagDetail &&
-          tagDetail.map(tag => {
+        {tagDetails &&
+          tagDetails.map(tag => {
             return (
               <SelectItem
                 onClick={() => {
@@ -56,9 +56,10 @@ const TagSelector = ({ detailTagInfo }) => {
       </>
 
       <Button
-        onClick={() =>
-          selectedTagList.length >= 1 && handleTagModal(selectedTagList)
-        }
+        onClick={() => {
+          selectedTagList.length >= 1 && handleTagModal(selectedTagList);
+          handleModal(3);
+        }}
       >
         확인
       </Button>

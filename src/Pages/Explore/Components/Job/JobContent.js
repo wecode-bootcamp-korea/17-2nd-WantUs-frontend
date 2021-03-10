@@ -7,7 +7,7 @@ const JobContent = ({ job, isLazy }) => {
   return (
     <JobItem key={job.id}>
       <div className="wholeWrapper">
-        <JobImage img={job.img} className={isLazy ? 'lazy' : ''}>
+        <JobImage img={job.img}>
           <Like>
             <AiTwotoneHeart />
             <div>{job.like}</div>

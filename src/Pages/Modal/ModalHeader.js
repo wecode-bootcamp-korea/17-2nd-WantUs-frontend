@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { AiOutlineReload } from 'react-icons/ai';
 import { TiDeleteOutline } from 'react-icons/ti';
 import theme from '../../Styles/theme';
+import { VscCloseAll } from 'react-icons/vsc';
+import BoardContext from '../../BoardContext';
 
-function ModalHeader() {
+function ModalHeader(data) {
+  const { handleModal } = useContext(BoardContext);
   return (
     <TagModalHeader>
       <ClearData>
@@ -12,9 +15,9 @@ function ModalHeader() {
         초기화
       </ClearData>
       <div>
-        태그 <span>0</span>
+        태그 <span>{data.data}</span>
       </div>
-      <TiDeleteOutline size={18} />
+      <TiDeleteOutline size={18} onClick={() => handleModal(3)} />
     </TagModalHeader>
   );
 }

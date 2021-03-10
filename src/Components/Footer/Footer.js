@@ -7,31 +7,30 @@ class Footer extends Component {
     return (
       <FooterContainer>
         <TextContainer>
-          <TopContainer>
-            <TextMenu>
-              <FooterLogo>
-                <Img
-                  alt="footerlogo"
-                  src={process.env.PUBLIC_URL + '/images/footer/logo.png'}
-                />
-              </FooterLogo>
-              <TextMenuDetail>
-                <TextDetail>
-                  {FOOTERDATA[0].map(index => {
-                    return <Context>{index}</Context>;
-                  })}
-                </TextDetail>
-              </TextMenuDetail>
-            </TextMenu>
-            <Select>
-              {FOOTERDATA[1].map(index => {
-                return <option>{index}</option>;
-              })}
-            </Select>
-          </TopContainer>
+          <TextMenu>
+            <FooterLogo>
+              <Img
+                alt="footerlogo"
+                src={process.env.PUBLIC_URL + '/images/footer/logo.png'}
+              />
+            </FooterLogo>
+            <TextMenuDetail>
+              <TextDetail>
+                {FOOTERDATA[0].map(index => {
+                  return <Context key={index}>{index}</Context>;
+                })}
+              </TextDetail>
+            </TextMenuDetail>
+          </TextMenu>
+          <Select>
+            {FOOTERDATA[1].map(index => {
+              return <option key={index}>{index}</option>;
+            })}
+          </Select>
+
           <TextInfo>
             {FOOTERDATA[2].map(index => {
-              return <Paragraph>{index}</Paragraph>;
+              return <Paragraph key={index}>{index}</Paragraph>;
             })}
           </TextInfo>
         </TextContainer>

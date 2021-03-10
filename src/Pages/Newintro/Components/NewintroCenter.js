@@ -32,18 +32,18 @@ class NewintroCenter extends React.Component {
 export default NewintroCenter;
 
 const NewintroPic = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 480px;
   background: url(${props => props.src});
   background-position: center center;
   background-size: cover;
-  width: 100%;
-  height: 480px;
-  display: flex;
-  justify-content: center;
 `;
 
 const Contents = styled.div`
-  height: 266px;
   padding: 160px 0 0 900px;
+  height: 266px;
 `;
 
 const Title = styled.h1`

@@ -105,7 +105,7 @@ const BoardProvider = ({ children }) => {
     setLocationData(locations);
     setTagData(tags);
     setCategoryData(categories);
-    ssetModalNum({
+    setModalNum({
       tagNum: tags.length,
       locationNum: locations.length,
     });
@@ -159,6 +159,21 @@ const BoardProvider = ({ children }) => {
     setUserInfo(newProfile);
 
     //백엔드 POST fetch
+    axios({
+      method: 'PATCH',
+      url: 'http://10.58.1.39:8000/user/profile',
+      headers: {
+        Authorization:
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.qrQ3NtQ0K5CilpjrwTQ-V7THX0lGegTYWZpPwBoUQw4',
+      },
+      data: {
+        name,
+        phoneNumber,
+      },
+    }).then(res => {
+      console.log(res);
+      setUserInfo(res.data.user);
+    });
   };
 
   return (

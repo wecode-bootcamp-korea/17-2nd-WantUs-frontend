@@ -9,16 +9,20 @@ import LocationModal from './Pages/Modal/LocationModal';
 import TagModal from './Pages/Modal/TagModal';
 import CareerModal from './Pages/Modal/CareerModal';
 import Login from './Pages/Login/Login';
+import CV from './Pages/CV/CV';
+import CVwrite from './Pages/CV/CVwrite';
 
 function Routes() {
   return (
     <Router>
       <Nav />
       <Switch>
-        <Route exact path="/" component={Main} />
-        <Route exact path="/newintro" component={Newintro} />
+        <Route exact path="/newintro" component={Main} />
         <Route exact path="/explore" component={Explore} />
         <Route exact path="/explore/posting/posting_list=:id?category=id" />
+        <Route exact path="/" component={Newintro} />
+        <Route exact path="/cv" component={CV} />
+        <Route exact path="/cv/write" component={CVwrite} />
       </Switch>
       {/* 
       <Login />

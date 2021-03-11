@@ -1,0 +1,66 @@
+{
+  "result": {
+    "career": [
+      {
+        "End": "2019-04-03",
+        "Name": "척척회사",
+        "Start": "2018-04-03",
+        "id": 1,
+        "parent": "career"
+      },
+      {
+        "End": null,
+        "Name": "박박회사",
+        "Start": "2019-04-03",
+        "id": 2,
+        "parent": "career"
+      }
+    ],
+    "education": [
+      {
+        "End": "2002-04-03",
+        "Name": "작은언덕유치원",
+        "Start": "1999-04-03",
+        "id": 1,
+        "parent": "education"
+      },
+      {
+        "End": "2008-04-03T00:00:00",
+        "Name": "작은언덕초등학교",
+        "Start": "2002-04-03",
+        "id": 2,
+        "parent": "education"
+      },
+      {
+        "End": null,
+        "Name": "작은언덕대학원",
+        "Start": "2020-04-03",
+        "id": 3,
+        "parent": "education"
+      }
+    ],
+    "language": [
+      {
+        "id": 1,
+        "End": "2012-04-03",
+        "Name": "영어",
+        "Start": "2010-04-03",
+        "parent": "language"
+      },
+      {
+        "id": 2,
+        "End": "2014-04-03",
+        "Name": "일본어",
+        "Start": "2011-04-03",
+        "parent": "language"
+      }
+    ],
+    "resumeIntro": "노는게 제일 좋아요",
+    "resumeTitle": "보라돌이의 이력서",
+    "userInfo": {
+      "email": "purple@a.com",
+      "name": "보라돌이",
+      "phoneNumber": "010-1111-1111"
+    }
+  }
+}

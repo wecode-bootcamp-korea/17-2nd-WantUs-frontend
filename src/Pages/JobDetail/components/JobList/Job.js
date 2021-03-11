@@ -17,7 +17,7 @@ const Job = ({ lastJobElementRef = null, job, history }) => {
       onClick={() => goToDetailPage(job)}
     >
       <header>
-        <Image src={job.image}></Image>
+        <Image src={job.image} />
         <button>
           <FaHeart className="icon" />
           {job.like}

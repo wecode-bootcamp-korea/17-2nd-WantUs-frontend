@@ -7,7 +7,6 @@ import Main from './Pages/Main/Main';
 import Explore from './Pages/Explore/Explore';
 import LocationModal from './Pages/Modal/LocationModal';
 import TagModal from './Pages/Modal/TagModal';
-import CareerModal from './Pages/Modal/CareerModal';
 import Login from './Pages/Login/Login';
 import CV from './Pages/CV/CV';
 import CVwrite from './Pages/CV/CVwrite';
@@ -19,10 +18,10 @@ function Routes() {
   return (
     <Router>
       <Nav />
+      <Login />
       <Switch>
         <Route exact path="/newintro" component={Main} />
         <Route exact path="/explore" component={Explore} />
-        <Route exact path="/explore/posting/posting_list=:id?category=id" />
         <Route exact path="/" component={Newintro} />
         <Route exact path="/cv" component={CV} />
         <Route exact path="/cv/write" component={CVwrite} />
@@ -35,9 +34,6 @@ function Routes() {
       </Switch>
       <TagModal />
       <LocationModal />
-      {/* 
-      <Login /> // 모두 해결후에 같이 붙이고 나서, 주석 삭제하갰습니다.
-    */}
       <Footer />
     </Router>
   );

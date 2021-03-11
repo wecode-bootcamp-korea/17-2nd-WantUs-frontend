@@ -7,10 +7,10 @@ const JobContent = ({ job, isLazy }) => {
   return (
     <JobItem key={job.id}>
       <div className="wholeWrapper">
-        <JobImage img={job.img}>
+        <JobImage img={job.image}>
           <Like>
             <AiTwotoneHeart />
-            <div>{job.like}</div>
+            <div className="numberLike">{job.like}</div>
           </Like>
         </JobImage>
         <Title>{job.title}</Title>
@@ -39,6 +39,7 @@ const JobItem = styled.div`
 
     .wrapper {
       display: flex;
+      color: ${theme.logoBlue};
     }
   }
 `;
@@ -56,13 +57,29 @@ const JobImage = styled.div`
 
 const Like = styled.div`
   display: flex;
+  justify-content: center;
   position: absolute;
+  padding: 8px;
   width: 70px;
   height: 30px;
   top: 15px;
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.3);
   color: ${theme.white};
+  &:first-of-type {
+    text-align: center;
+  }
+
+  div {
+    margin-left: 5px;
+  }
+  .numberLike {
+    position: relative;
+    top: 1px;
+  }
+  &:last-child {
+    margin-left: 5px;
+  }
 `;
 
 const Title = styled.div`
@@ -80,27 +97,17 @@ const Company = styled.div`
 
 const City = styled.p`
   ${theme.cityStyle};
-  color: ${theme.darkGray};
+  color: ${theme.logoBlue};
 `;
 
 const Nation = styled.p`
   ${theme.cityStyle};
   color: ${theme.darkGray};
+  color: ${theme.logoBlue};
 `;
 
 const Bonus = styled.div`
   font-size: 13px;
-  color: ${theme.darkGray};
-`;
-
-const ResponseRate = styled.div``;
-
-const HightRate = styled.p`
-  display: inline-block;
-  padding: 5px;
-  margin-bottom: 6px;
-  border: 1.7px solid ${theme.crayonGreen};
-  color: ${theme.crayonGreen};
-  border-radius: 5px;
-  font-size: 10px;
+  font-weight: bold;
+  color: black;
 `;

@@ -19,7 +19,11 @@ export default LocationModal;
 
 const LocationModalContainer = styled.div`
   display: ${props => (props.openModal ? 'block' : 'none')};
-  height: 300px;
   ${theme.modalStyle};
   ${theme.showModaStyle}
+  position:fixed;
+  top: 45%;
+  left: 20%;
+  transform: translate(50%, -50%);
+  background-color: ${theme.white};
 `;

@@ -7,6 +7,7 @@ import ThisWeekBox from './ThisWeekBox';
 
 import styled from 'styled-components';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
+import { MAIN } from '../../../config';
 
 class Positions extends Component {
   constructor() {
@@ -21,8 +22,12 @@ class Positions extends Component {
   }
 
   componentDidMount() {
-    // fetch('http://10.58.0.156:8000/posting')
-    fetch('data/PositionData.json')
+    fetch(`${MAIN}`, {
+      method: 'GET',
+      headers: {
+        Authorization: sessionStorage.getItem('access_token'),
+      },
+    })
       .then(res => res.json())
       .then(res => this.setDatas(res));
 
@@ -54,20 +59,21 @@ class Positions extends Component {
           <AiOutlineQuestionCircle size="25" color="gray" className="icon" />
         </Title>
         <PositionBox>
-          {this.state.acceptList.map(acceptList => {
-            return (
-              <AcceptedPositionBox
-                key={acceptList.id}
-                id={acceptList.id}
-                imageUrl={acceptList.imageUrl}
-                job={acceptList.job}
-                name={acceptList.name}
-                city={acceptList.city}
-                state={acceptList.state}
-                price={acceptList.price}
-              />
-            );
-          })}
+          {this.state.acceptList &&
+            this.state.acceptList.map(acceptList => {
+              return (
+                <AcceptedPositionBox
+                  key={acceptList.id}
+                  id={acceptList.id}
+                  imageUrl={acceptList.imageUrl}
+                  job={acceptList.job}
+                  name={acceptList.name}
+                  city={acceptList.city}
+                  state={acceptList.state}
+                  price={acceptList.price}
+                />
+              );
+            })}
         </PositionBox>
         <Title>커리어 성장의 기회</Title>
         <PositionBox>

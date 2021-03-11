@@ -10,7 +10,6 @@ const SetProfile = () => {
 
   const handleResume = () => {
     setResumeModal(prevStatus => !prevStatus);
-    console.log(onResumeModal);
   };
 
   return (
@@ -24,7 +23,7 @@ const SetProfile = () => {
             <span>기본 이력서 선택</span>
             <Options onClick={handleResume}>
               <FaCaretDown className="more" />
-              <p>saemsol yoo1</p>
+              <p>resume version 01</p>
             </Options>
           </li>
           <li>

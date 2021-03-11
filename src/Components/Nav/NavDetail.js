@@ -53,7 +53,6 @@ const CategoryBox = styled.div`
   top: 47px;
   left: 0;
   z-index: 2000;
-  }
 `;
 
 const MainCategory = styled.ul`

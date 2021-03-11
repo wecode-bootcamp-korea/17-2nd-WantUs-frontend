@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 class NewhireBox extends Component {
   goToDetail = id => {
     this.props.history.push(`/detail/${id}`);
+    window.scrollTo(0, 0);
   };
 
   render() {
@@ -21,7 +23,7 @@ class NewhireBox extends Component {
   }
 }
 
-export default NewhireBox;
+export default withRouter(NewhireBox);
 
 const PositionContainer = styled.div`
   display: flex;

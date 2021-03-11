@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import styled, { ThemeConsumer } from 'styled-components';
 import CVDATA from './CVData';
+import { RESUME_API } from '../../config';
 
 class CVdetail extends React.Component {
   constructor() {
@@ -13,12 +14,11 @@ class CVdetail extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match);
-    // 백엔드 통신 후 삭제
-    // fetch('http://10.58.1.89:8000/cv/list/1', { method: 'GET' })
-    fetch(`http://10.58.2.45:8000/resume/${this.props.match.params.id}`, {
-      // fetch('/data/CVwriteData.json', {
+    fetch(`${RESUME_API}/${this.props.match.params.id}`, {
       method: 'GET',
+      headers: {
+        Authorization: sessionStorage.getItem('access_token'),
+      },
     })
       .then(res => res.json())
       .then(res => {
@@ -40,20 +40,10 @@ class CVdetail extends React.Component {
   delete = async (info, value) => {
     const item = this.state.cvwriteList[value];
     const remainItem = item.filter(cv => {
-      console.log(info, cv);
       return info.Name !== cv.Name;
     });
     const currentState = this.state.cvwriteList;
     currentState[value] = remainItem;
-
-    // 백엔드 통신 후 삭제
-    // await fetch(`http://10.58.1.89:8000/resume/${info}`, {
-    //   method: 'DELETE',
-    //   headers: {
-    //     Authorization: localStorage.getItem('accessToken'),
-    //   },
-    // }).then(response => response.json());
-    // this.handleData();
 
     this.setState({
       cvwriteList: currentState,

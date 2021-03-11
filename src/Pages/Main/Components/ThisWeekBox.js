@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 class ThisWeekBox extends Component {
   goToDetail = id => {
     this.props.history.push(`/detail/${id}`);
+    window.scrollTo(0, 0);
   };
 
   render() {
@@ -25,7 +27,7 @@ class ThisWeekBox extends Component {
   }
 }
 
-export default ThisWeekBox;
+export default withRouter(ThisWeekBox);
 
 const PositionContainer = styled.div`
   display: flex;

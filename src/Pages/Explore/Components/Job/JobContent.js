@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../../../../Styles/theme';
 import { AiTwotoneHeart } from 'react-icons/ai';
 
-const JobContent = ({ job, isLazy }) => {
+const JobContent = ({ job, isLazy, history }) => {
+  const goToDetail = id => {
+    history.push(`/detail/${id}`);
+    window.scrollTo(0, 0);
+  };
+
   return (
-    <JobItem key={job.id}>
+    <JobItem key={job.id} onClick={() => goToDetail(job.id)}>
       <div className="wholeWrapper">
         <JobImage img={job.image}>
           <Like>
@@ -27,7 +33,7 @@ const JobContent = ({ job, isLazy }) => {
   );
 };
 
-export default JobContent;
+export default withRouter(JobContent);
 
 const JobItem = styled.div`
   width: 250px;

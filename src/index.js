@@ -5,6 +5,7 @@ import GlobalStyle from './Styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import BoardProvider from './BoardProvider';
 import theme from './Styles/theme';
+import { ProfileProvider } from './Context/profile';
 
 ReactDOM.render(
   <BoardProvider>

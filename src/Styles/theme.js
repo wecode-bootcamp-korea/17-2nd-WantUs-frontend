@@ -62,11 +62,60 @@ const theme = {
     height: 'auto',
     outline: 'none',
     border: 'none',
+    fontContent: "'Noto Sans KR', sans-serif",
+  },
+
+  TagUl: {
+    display: 'flex',
+    width: '100%',
+    'flex-wrap': 'wrap',
+    'margin-bottom': '50px',
+  },
+
+  TagLi: {
+    padding: '9px 14px',
+    margin: '0 6px 10px 0',
+    'font-size': '12px',
+    'font-weight': '500',
+    ' line-height': '1',
+    ' background-color': '#f3f5f8',
+    ' border-radius': '25px',
+    ' cursor': 'pointer',
   },
   showModaStyle: {
     position: 'absolute',
     'margin-top': '200px 200px',
     'z-index': '120',
+  },
+
+  WhiteBox: {
+    border: '1px solid #e1e2e3',
+    ' background-color': '#ffffff',
+  },
+
+  profileContainer: {
+    display: 'flex',
+    'flex-direction': 'column',
+    'align-items': 'center',
+    'min-height': '100vh',
+    'padding-top': '50px',
+    'padding-bottom': '100px',
+    'background-color': '#f7f7f9',
+    color: '#333333',
+  },
+
+  profileSection: {
+    display: 'flex',
+    'flex-direction': 'row',
+    'justify-content': 'space-between',
+    width: '1000px',
+  },
+
+  pageTitle: {
+    width: '1000px',
+    padding: '50px 0 20px',
+    'font-size': '20px',
+    'font-weight': '700',
   },
 };
 

@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+<<<<<<< HEAD
     "img": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80",
     "like": 0,
     "title": "프론트 엔드 개발자",
@@ -38,6 +39,42 @@
     "like": 0,
     "title": "프론트 엔드 개발자",
     "company": "아래하소프트웨어",
+=======
+    "img": "https://images.unsplash.com/photo-1598257006675-0aaec40301f9?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjQ2fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 3,
+    "title": "프론트 엔드 개발자",
+    "company": "위코드랩",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 2,
+    "img": "https://images.unsplash.com/photo-1598257006626-48b0c252070d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8am9ifGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 2,
+    "title": "웹 프론트엔드 개발",
+    "company": "알레시오",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 3,
+    "img": "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fGpvYnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 116,
+    "title": "프론트엔드 엔지니어",
+    "company": "마크비전",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 4,
+    "img": "https://images.unsplash.com/photo-1455849318743-b2233052fcff?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fGpvYnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 117,
+    "title": "프론트엔드 개발자",
+    "company": "소프트웨어인라이프",
+>>>>>>> 5227e07... Add: 무한스크롤 백엔드 통신 완료, 푸터 병합 완료, main 브랜치 rebase
     "city": "서울",
     "nation": "한국",
     "bonus": 2000000,
@@ -45,6 +82,7 @@
   },
   {
     "id": 5,
+<<<<<<< HEAD
     "img": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80",
     "like": 0,
     "title": "프론트 엔드 개발자",
@@ -207,11 +245,161 @@
     "nation": "한국",
     "bonus": 2000000,
     "responseRate": false
+=======
+    "img": "https://images.unsplash.com/photo-1469468676901-56819346d576?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTl8fGpvYnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 5,
+    "title": "React 프론트엔드 개발자",
+    "company": "리액트컴퍼니",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 6,
+    "img": "https://images.unsplash.com/photo-1612860745204-46f9d7da6522?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTh8fGpvYnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 10,
+    "title": "풀스택 개발자(Full-stack)",
+    "company": "워터테크놀로지스",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 7,
+    "img": "https://images.unsplash.com/photo-1598870783649-5f875f81cd0f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8ODZ8fGpvYnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 3,
+    "title": "Front-end Engineer",
+    "company": "소프트웨어인어라인",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 8,
+    "img": "https://images.unsplash.com/photo-1606159068539-43f36b99d1b2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTAwfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 77,
+    "title": "Android 개발자",
+    "company": "쉐어잇코드",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 9,
+    "img": "https://images.unsplash.com/photo-1586364800739-bed6bc729c7b?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTA3fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 18,
+    "title": "Front-end Engineer",
+    "company": "웍스네트워크",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 10,
+    "img": "https://images.unsplash.com/photo-1606166325683-e6deb697d301?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTEzfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "프론트엔드 엔지니어 (주니어)",
+    "company": "헬로월드",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 11,
+    "img": "https://images.unsplash.com/photo-1584797265220-50dffab120d2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTIxfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "프론트엔드 개발자",
+    "company": "오늘도랩",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 12,
+    "img": "https://images.unsplash.com/photo-1598257006361-0df9b1e63d42?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTQwfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "웹 프론트 엔드 개발자 (React)",
+    "company": "벤쳐스닷컴",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 13,
+    "img": "https://images.unsplash.com/photo-1489875347897-49f64b51c1f8?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTQ0fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "Web Developer",
+    "company": "빌리지소프트웨어",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 14,
+    "img": "https://images.unsplash.com/photo-1584556326760-ddeb4f57095f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTU4fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "Frontedn Engineer",
+    "company": "코드타카",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 15,
+    "img": "https://images.unsplash.com/photo-1507206292181-8142bdfdc312?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTkxfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 13,
+    "title": "웹개발자",
+    "company": "스위트홈",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 16,
+    "img": "https://images.unsplash.com/photo-1592329347810-258afdd206bb?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTk2fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "주니어 개발자",
+    "company": "포도마켓",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 17,
+    "img": "https://images.unsplash.com/photo-1598257006458-087169a1f08d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTk4fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "신입 프론트엔드 개발자",
+    "company": "이지컴",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 18,
+    "img": "https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjAyfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "웹개발자 신입가능",
+    "company": "글로컬라이즈",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 19,
+    "img": "https://images.unsplash.com/photo-1600267165477-6d4cc741b379?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjIwfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "Web Developer",
+    "company": "더블코드",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+>>>>>>> 5227e07... Add: 무한스크롤 백엔드 통신 완료, 푸터 병합 완료, main 브랜치 rebase
   },
   {
     "id": 20,
     "img": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80",
     "like": 0,
+<<<<<<< HEAD
     "title": "프론트 엔드 개발자",
     "company": "아래하소프트웨어",
     "city": "서울",
@@ -299,11 +487,93 @@
   {
     "id": 28,
     "img": "https://images.unsplash.com/photo-1449600037516-9285f7e794f4?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjZ8fGNvbG9yZnVsfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+=======
+    "title": "Web-app Developer",
+    "company": "유니언캐스트",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 21,
+    "img": "https://images.unsplash.com/photo-1598631743153-05d10d9e44b6?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjUxfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 21,
+    "title": "[웹프론트] 개발자",
+    "company": "피클피자플러스",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 22,
+    "img": "https://images.unsplash.com/photo-1443770760695-e1bfa3e62229?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjU3fHxqb2J8ZW58MHx8MHw%3D&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "프론트 엔드 개발자",
+    "company": "판다익스프레스",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 23,
+    "img": "https://images.unsplash.com/photo-1487284122274-e864e9dec2bf?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjYwfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "Web Front-End 개발자",
+    "company": "오늘소프트웨어",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 24,
+    "img": "https://images.unsplash.com/photo-1502209877429-d7c6df9eb3f9?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjYxfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 10,
+    "title": "클라이언트 개발",
+    "company": "스웨덴코리아",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 25,
+    "img": "https://images.unsplash.com/photo-1612296727716-d6c69d2a2cbb?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjYyfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "웹 프론트엔드 개발자",
+    "company": "레블캣",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 26,
+    "img": "https://images.unsplash.com/photo-1602506860730-b690f1a6f662?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjY5fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "React Native 앱 개발자",
+    "company": "토탈헬스케어",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 27,
+    "img": "https://images.unsplash.com/photo-1557128301-4287b02e30b4?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzI3fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "웹 프론트엔드 엔지니어",
+    "company": "헬프미아웃",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 28,
+    "img": "https://images.unsplash.com/photo-1519891524955-e25bc774de70?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzMyfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+>>>>>>> 5227e07... Add: 무한스크롤 백엔드 통신 완료, 푸터 병합 완료, main 브랜치 rebase
     "like": 0,
     "title": "프론트 엔드 개발자",
     "company": "아래하소프트웨어",
     "city": "서울",
     "nation": "한국",
+<<<<<<< HEAD
     "bonus": 2000000,
     "responseRate": false
   },
@@ -416,5 +686,108 @@
     "nation": "한국",
     "bonus": 2000000,
     "responseRate": false
+=======
+    "bonus": 2000000
+  },
+  {
+    "id": 29,
+    "img": "https://images.unsplash.com/flagged/photo-1572976430700-e0412dfacf92?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzM5fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "웹 개발 담당자",
+    "company": "클럽하우징",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 30,
+    "img": "https://images.unsplash.com/photo-1605918321371-584f5deab0a2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzQ3fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "iOS 앱 개발자",
+    "company": "피플컴퍼니",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 31,
+    "img": "https://images.unsplash.com/photo-1611486212557-88be5ff6f941?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzUzfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "프론트엔드 엔지니어",
+    "company": "미니프로젝트",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 1000000
+  },
+  {
+    "id": 32,
+    "img": "https://images.unsplash.com/photo-1600267185393-e158a98703de?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzY3fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 5,
+    "title": "UI 개발자",
+    "company": "콘푸로스트",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 33,
+    "img": "https://images.unsplash.com/photo-1598257006460-4cd5d043cf49?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzY1fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "React 개발자",
+    "company": "런던소프트웨어",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 34,
+    "img": "https://images.unsplash.com/photo-1606166325695-ce4d64e3195f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mzg2fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "클라이언트 프로그래머",
+    "company": "다다다",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 35,
+    "img": "https://images.unsplash.com/photo-1501163268664-3fdf329d019f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDAxfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 0,
+    "title": "프론트엔드",
+    "company": "뉴스유어스",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 36,
+    "img": "https://images.unsplash.com/photo-1600267165517-13aa4805b387?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDE3fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 2,
+    "title": "시니어 프론트엔드 개발자",
+    "company": "오오피이",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 37,
+    "img": "https://images.unsplash.com/photo-1603322327561-68aa78fb96bc?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDE5fHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 4,
+    "title": "프론트 엔드 개발자",
+    "company": "디벨로퍼하우스",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+  },
+  {
+    "id": 38,
+    "img": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDQwfHxqb2J8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+    "like": 10,
+    "title": "🥳 주니어 프론트엔드",
+    "company": "대시대시코리아",
+    "city": "서울",
+    "nation": "한국",
+    "bonus": 2000000
+>>>>>>> 5227e07... Add: 무한스크롤 백엔드 통신 완료, 푸터 병합 완료, main 브랜치 rebase
   }
 ]

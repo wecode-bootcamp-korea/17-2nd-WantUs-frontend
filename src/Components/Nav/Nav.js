@@ -38,17 +38,32 @@ class Nav extends React.Component {
     this.props.history.push('/');
   };
 
+  goToCV = () => {
+    this.props.history.push('/cv');
+  };
+
+  goToLoginMain = () => {
+    this.props.history.push('/newintro');
+  };
+
+  goToExplore = () => {
+    this.props.history.push('/explore');
+  };
+
   render() {
     return (
       <>
         <NavContainer>
           <NavmainBox>
-            <NavLogo onMouseEnter={this.handleCategoryMouseHover}>
+            <NavLogo
+              onMouseEnter={this.handleCategoryMouseHover}
+              onClick={this.goToLoginMain}
+            >
               <span>wantus</span>
             </NavLogo>
             <TextBox>
               <Menu
-                onClick={this.goToMain}
+                onClick={this.goToExplore}
                 onMouseEnter={this.handleCategoryMouseHover}
               >
                 탐색
@@ -57,7 +72,7 @@ class Nav extends React.Component {
                 커리어 성장
               </Menu>
               <Menu onClick={this.goToMain}>직군별 연봉</Menu>
-              <Menu onClick={this.goToMain}>이력서</Menu>
+              <Menu onClick={this.goToCV}>이력서</Menu>
               <Menu onClick={this.goToMain}>매치업</Menu>
               <Menu onClick={this.goToMain}>프리랜서</Menu>
             </TextBox>
@@ -116,6 +131,7 @@ const NavLogo = styled.div`
   font-size: 23px;
   font-weight: bold;
   margin-right: 30px;
+  cursor: pointer;
 `;
 
 const TextBox = styled.div`

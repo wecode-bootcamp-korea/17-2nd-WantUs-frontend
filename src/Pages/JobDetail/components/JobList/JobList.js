@@ -34,9 +34,10 @@ const JobList = ({ match }) => {
 
     axios({
       method: 'GET',
-      url: `http://172.30.1.55:8000/posting/pagination/${match.params.id}`,
+      url: `http://10.58.2.243:8000/posting/${match.params.id}/related-posting`,
       params: { page: pageNumber },
     }).then(res => {
+      console.log('🔥');
       console.log(res);
       console.log(pageNumber);
       console.log(res.data.data);

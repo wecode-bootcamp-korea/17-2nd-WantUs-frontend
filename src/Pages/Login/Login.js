@@ -5,11 +5,11 @@ import theme from '../../Styles/theme';
 import { FaRegEnvelope, FaComment, FaApple, FaGoogle } from 'react-icons/fa';
 import { SERVER, KAKAOLOGIN } from '../../config';
 
-const KakaoInit = ({ history }) => {
+const KakaoInit = () => {
   Kakao.init('16d72c2ad8d1c5e1a9f98c6812b1a63e');
 };
 
-const Login = () => {
+const Login = ({ history }) => {
   const [isModalOpen, setModalOpen] = useState(true);
 
   const handleModal = () => {
@@ -31,7 +31,7 @@ const Login = () => {
           .then(result => {
             if (result.message === 'SUCCESS') {
               sessionStorage.setItem('access_token', result.accessToken);
-              this.props.history.push('/');
+              // this.props.history.push('/');
               alert('로그인 성공');
             } else {
               alert('로그인 실패');

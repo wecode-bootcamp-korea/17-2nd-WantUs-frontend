@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import JobList from './components/JobList/JobList';
 import styled from 'styled-components';
 import axios from 'axios';
-import { FaRegBookmark, FaHeart } from 'react-icons/fa';
+import { FaRegBookmark, FaBookmark, FaHeart } from 'react-icons/fa';
 import theme from '../../Styles/theme';
 
 const JobDetail = ({ history, match }) => {
@@ -11,30 +11,62 @@ const JobDetail = ({ history, match }) => {
   const [uploadFile, setUploadFile] = useState(false);
   const [selectedFile, setSelectedFile] = useState();
   const [pdfUrl, setPdfUrl] = useState();
+  const [bookmark, setBookmark] = useState();
+  const [like, setLike] = useState();
+  const [numberOfLike, setNumberOfLike] = useState();
+  const [userName, setUserName] = useState();
+  const [userEmail, setUserEmail] = useState();
+  const [userPhoneNumber, setUserPhoneNumber] = useState();
 
   //백엔드통신
   useEffect(() => {
+    const token = sessionStorage.getItem('access_token') && {
+      Authorization: sessionStorage.getItem('access_token'),
+    };
+
     axios({
       method: 'GET',
-      // url: 'http://172.30.1.55:8000/posting/1',
-      url: `http://172.30.1.55:8000/posting/${match.params.id}`,
+      url: `http://10.58.2.243:8000/posting/${match.params.id}`,
+      headers: token,
     }).then(res => {
+      console.log(res.data.data[0]);
       setJobDetailData(res.data.data[0]);
+      setBookmark(res.data.data[0].userBookmark);
+      setLike(res.data.data[0].userLike);
+      setNumberOfLike(res.data.data[0].like);
+      setUserName(res.data.data[0].user);
+      setUserEmail(res.data.data[0].userEmail);
+      setUserPhoneNumber(res.data.data[0].userPhone);
     });
   }, []);
 
-  //mockdata
-  // useEffect(() => {
-  //   axios({
-  //     method: 'GET',
-  //     url: '/data/JobDetailData.json',
-  //   }).then(res => {
-  //     setJobDetailData(res.data[0]);
-  //   });
-  // }, []);
-
   const handleBookmark = () => {
-    alert('Bookmark 📒');
+    axios({
+      method: 'POST',
+      url: `http://10.58.2.243:8000/posting/bookmark/${match.params.id}`,
+      headers: {
+        Authorization: sessionStorage.getItem('access_token'),
+      },
+    }).then(res => {
+      console.log(res);
+      setBookmark(prevStatus => !prevStatus);
+    });
+  };
+
+  const handleLike = () => {
+    axios({
+      method: 'POST',
+      url: `http://10.58.2.243:8000/posting/like/${match.params.id}`,
+      headers: {
+        Authorization: sessionStorage.getItem('access_token'),
+      },
+    }).then(res => {
+      console.log(res);
+      setLike(prevStatus => !prevStatus);
+      like
+        ? setNumberOfLike(like => like - 1)
+        : setNumberOfLike(like => like + 1);
+    });
   };
 
   const handleApply = () => {
@@ -55,16 +87,16 @@ const JobDetail = ({ history, match }) => {
     const config = {
       headers: {
         'content-type': 'multipart/form-data',
+        Authorization: sessionStorage.getItem('access_token'),
       },
     };
 
     return axios
-      .post('http://10.58.2.243:8000/cv/resumeupload', formData, config)
+      .post('http://10.58.2.243:8000/resume/upload', formData, config)
       .then(res => {
-        console.log(res);
-        console.log(res.data.data[0]);
-        setPdfUrl(res.data.data[0]);
+        setPdfUrl(res.data.data);
         alert('성공');
+        postApply();
       })
       .catch(err => {
         console.log(err);
@@ -72,18 +104,31 @@ const JobDetail = ({ history, match }) => {
       });
   };
 
+  const postApply = () => {
+    axios({
+      method: 'POST',
+      url: `http://10.58.1.39:8000/apply`,
+      headers: {
+        Authorization: sessionStorage.getItem('access_token'),
+      },
+      data: {
+        posting: match.params.id,
+      },
+    }).then(res => {
+      console.log(res);
+    });
+  };
+
   const goToCV = () => {
     history.push('/cv');
   };
-
-  console.log(pdfUrl);
 
   return (
     <DetailPage>
       <DetailSection>
         <article>
           <div>
-            <img src={jobDetailData.img} alt="job image" />
+            <img src={jobDetailData.image} alt="job image" />
           </div>
           <h2>{jobDetailData.title}</h2>
           <div>
@@ -94,59 +139,15 @@ const JobDetail = ({ history, match }) => {
             </span>
           </div>
           <TagList>
-            {/* {jobDetailData &&
+            {jobDetailData.tags &&
               jobDetailData.tags.map(tag => {
                 return <li>{tag}</li>;
-              })} */}
-            <li>#연봉업계평균이상</li>
-            <li>#인원급성장</li>
-            <li>#50명이하</li>
-            <li>#설립3년이하</li>
-            <li>#유연근무</li>
-            <li>#음료</li>
-            <li>#간식</li>
-            <li>#간식</li>
-            <li>#건강검진</li>
-            <li>#IT, 컨텐츠</li>
+              })}
           </TagList>
           <Description>
             <div
               dangerouslySetInnerHTML={{ __html: jobDetailData.description }}
             ></div>
-            {/* <div>
-              <p>
-                Wecode는 한국 product를 미국 현지 고객들에게 온라인/오프라인으로
-                유통 및 판매를 하는 회사입니다. 본사는 미국 캘리포니아에 있으며
-                온라인 사업팀은 현재 서울 강남에 있습니다. 현재 프라이머 사제
-                펀드, 스피겐, 블루스톤 등의 투자회사로부터 투자를 받아 매출이
-                매달 월 20% 이상 오르고 있는 급성장하는 회사이며 저희와 함께
-                빠르게 성장하시면서 많은 경험을 하실 수 있을 거라 생각됩니다.
-              </p>
-              <ul>
-                <h4>주요업무</h4>
-                <li>워드프레스 기반 웹사이트를 담당</li>
-                <li>우커머스 플러그인을 이용한 개발 담당</li>
-                <li>워드프레스를 이용한 다양한 플러그인 설치 및 개발</li>
-              </ul>
-              <ul>
-                <h4>자격요건</h4>
-                <li>워드프레스 기반 웹사이트를 개발해보신분.</li>
-                <li>우커머스 플러그인에 대해 이해가 있으신분.</li>
-              </ul>
-              <ul>
-                <h4>우대사항</h4>
-                <li>워드프레스 테마빌더중 divi테마를 사용해보신분</li>
-              </ul>
-              <ul>
-                <h4>혜택 및 복지</h4>
-                <li>급여 : 면접후 지원자님의 연봉 및 역량 협의후 결정</li>
-                <li>탄력 근무제(8~10시 출근, 5시~7시 퇴근)</li>
-                <li>4대 보험</li>
-                <li>15일 연가. 자율 휴가</li>
-                <li>주 2~3회 원격 근무 권장</li>
-                <li>간식 및 음료 지원</li>
-              </ul>
-            </div> */}
           </Description>
           <Map>
             <ul>
@@ -194,15 +195,22 @@ const JobDetail = ({ history, match }) => {
               bgColor={'white'}
               onClick={handleBookmark}
             >
-              <FaRegBookmark className="icon" />
-              북마크하기
+              {bookmark ? (
+                <div>
+                  <FaBookmark className="icon" /> 북마크
+                </div>
+              ) : (
+                <div>
+                  <FaRegBookmark className="icon" /> 북마크하기
+                </div>
+              )}
             </Button>
             <Button color={'white'} bgColor={'#3366ff'} onClick={handleApply}>
               지원하기
             </Button>
-            <LikeBtn>
+            <LikeBtn onClick={handleLike} like={like}>
               <FaHeart className="heart" />
-              <span>{jobDetailData.like}</span>
+              <span>{numberOfLike}</span>
             </LikeBtn>
           </Box>
         )}
@@ -217,15 +225,15 @@ const JobDetail = ({ history, match }) => {
               <ul>
                 <li>
                   <span>이름</span>
-                  <input value="saemsolyoo" type="text" />
+                  <input value={userName} type="text" />
                 </li>
                 <li>
                   <span>이메일</span>
-                  <input value="yoosaemsol@gmail.com" type="email" />
+                  <input value={userEmail} type="email" />
                 </li>
                 <li>
                   <span>연락처</span>
-                  <input value="+821075525214" type="tel" />
+                  <input value={userPhoneNumber} type="tel" />
                 </li>
               </ul>
               <h3>첨부파일</h3>
@@ -618,10 +626,11 @@ const LikeBtn = styled.button`
   border-radius: 15px;
   padding: 0 15px;
   background-color: inherit;
+  cursor: pointer;
 
   .heart {
     margin-right: 10px;
-    color: #d6d6d6;
+    color: ${props => (props.like ? '#red' : '#d6d6d6')};
     font-size: 14px;
   }
 

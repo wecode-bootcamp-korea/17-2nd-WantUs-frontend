@@ -19,6 +19,7 @@ const UserData = ({ history }) => {
   const goToDetail = job => {
     console.log(job);
     history.push(`/detail/${job.id}`);
+    window.scrollTo(0, 0);
   };
 
   //채현님 통신

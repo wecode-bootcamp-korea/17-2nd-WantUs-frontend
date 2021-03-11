@@ -1,7 +1,12 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 class NavDetail extends React.Component {
+  goToExplore = () => {
+    this.props.history.push('/explore');
+  };
+
   render() {
     const { categoryTitle, onMouseLeave } = this.props;
 
@@ -10,7 +15,10 @@ class NavDetail extends React.Component {
         <MainCategory onMouseLeave={onMouseLeave}>
           {categoryTitle?.map(mainCategory => {
             return (
-              <MainCategoryMenu key={mainCategory.id}>
+              <MainCategoryMenu
+                key={mainCategory.id}
+                onClick={this.goToExplore}
+              >
                 {mainCategory.catergoriesName}
                 <SubCategory>
                   {mainCategory.subCatergoriesName.map((subcategory, index) => {
@@ -30,7 +38,7 @@ class NavDetail extends React.Component {
   }
 }
 
-export default NavDetail;
+export default withRouter(NavDetail);
 
 const CategoryBox = styled.div`
   padding-top: 25px;
@@ -55,6 +63,7 @@ const MainCategory = styled.ul`
 const MainCategoryMenu = styled.ul`
   color: black;
   margin: 20px;
+  cursor: pointer;
 `;
 
 const SubCategory = styled.ul`

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import styled, { ThemeConsumer } from 'styled-components';
 import CVDATA from './CVData';
 
@@ -12,10 +13,11 @@ class CVdetail extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.match);
     // 백엔드 통신 후 삭제
     // fetch('http://10.58.1.89:8000/cv/list/1', { method: 'GET' })
-    // fetch(`http://10.58.2.240:8000/product/${this.props.match.params.id}`)
-    fetch('/data/CVwriteData.json', {
+    fetch(`http://10.58.2.45:8000/resume/${this.props.match.params.id}`, {
+      // fetch('/data/CVwriteData.json', {
       method: 'GET',
     })
       .then(res => res.json())
@@ -35,13 +37,14 @@ class CVdetail extends React.Component {
     }
   };
 
-  delete = async info => {
-    const item = this.state.cvwriteList[info.parent];
+  delete = async (info, value) => {
+    const item = this.state.cvwriteList[value];
     const remainItem = item.filter(cv => {
-      return info.id !== cv.id;
+      console.log(info, cv);
+      return info.Name !== cv.Name;
     });
     const currentState = this.state.cvwriteList;
-    currentState[info.parent] = remainItem;
+    currentState[value] = remainItem;
 
     // 백엔드 통신 후 삭제
     // await fetch(`http://10.58.1.89:8000/resume/${info}`, {
@@ -78,12 +81,14 @@ class CVdetail extends React.Component {
                   <NewDisplay placeholder={info.placeholder[2]} />
                 </Extra>
                 {this.state.cvwriteList.length !== 0 &&
-                  this.state.cvwriteList[info.key].map(info => (
+                  this.state.cvwriteList[info.key].map(item => (
                     <InfoBox>
-                      <Information>{info.Start}</Information>
-                      <Information>{info.End}</Information>
-                      <Information>{info.Name}</Information>
-                      <Delete onClick={() => this.delete(info)}>X</Delete>
+                      <Information>{item.Start}</Information>
+                      <Information>{item.End}</Information>
+                      <Information>{item.Name}</Information>
+                      <Delete onClick={() => this.delete(item, info.key)}>
+                        X
+                      </Delete>
                     </InfoBox>
                   ))}
               </TopBox>
@@ -95,7 +100,7 @@ class CVdetail extends React.Component {
   }
 }
 
-export default CVdetail;
+export default withRouter(CVdetail);
 
 const InfoContents = styled.div`
   display: flex;

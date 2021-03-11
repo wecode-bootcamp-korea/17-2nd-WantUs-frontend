@@ -6,7 +6,13 @@ import theme from '../../Styles/theme';
 import LocationSelector from './LocationSelector';
 
 function LocationModalCategory() {
-  const { filterData, handleLocationModal } = useContext(BoardContext);
+  const {
+    handleLocationModal,
+    handleModal,
+    locationData: { state },
+    locationData: { county },
+  } = useContext(BoardContext);
+
   const [stateList, setStateList] = useState([]);
   const [detailList, setDetailList] = useState([]);
 
@@ -30,8 +36,9 @@ function LocationModalCategory() {
         <CityContainer>
           <h6>지역</h6>
           <CityItemContainer>
-            {filterData.locationData.length >= 1 &&
-              filterData.locationData[0].map(cityItem => {
+            {state &&
+              state.length >= 1 &&
+              state.map(cityItem => {
                 return (
                   <CityItem key={cityItem.id}>
                     <div onClick={() => handleState(cityItem)}>
@@ -45,8 +52,9 @@ function LocationModalCategory() {
         <StateContainer>
           <h6>상세지역</h6>
           <StateItemContainer>
-            {detailList.length >= 1 &&
-              detailList.map(stateItem => {
+            {county &&
+              county.length >= 1 &&
+              county.map(stateItem => {
                 return (
                   <StateItem
                     key={stateItem.id}
@@ -67,7 +75,10 @@ function LocationModalCategory() {
         handleDelete={handleSelectedState}
       />
       <SubmitBtn
-        onClick={() => stateList.length >= 1 && handleLocationModal(stateList)}
+        onClick={() => {
+          stateList.length >= 1 && handleLocationModal(stateList);
+          stateList.length >= 1 && handleModal(3);
+        }}
       >
         확인
       </SubmitBtn>

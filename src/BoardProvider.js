@@ -4,38 +4,65 @@ import BoardContext from './BoardContext';
 import { JOB_LIST } from './config';
 
 const BoardProvider = ({ children }) => {
-  const [postData, setPostData] = useState([]);
-  const [filterData, setFilterData] = useState({
-    tagData: [],
-    locationData: [],
-    careerData: [],
-  });
-
+  const [postingData, setPostingData] = useState([]);
+  const [locationData, setLocationData] = useState([]);
+  const [tagData, setTagData] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
+  const [isTagModal, setTagModal] = useState(false);
+  const [isLocationModal, setLocationModal] = useState(false);
+  const [urlQuery, setUrlQuery] = useState('');
   const [requestFilterData, setRequestFetchFilterData] = useState({
     tag: [],
     location: [],
   });
+  const [modalNum, setModalNum] = useState({
+    tagNum: 0,
+    locationNum: 0,
+  });
 
   useEffect(() => {
-    fetchFilterData();
+    tagModalRequest();
   }, []);
 
-  useEffect(() => {});
+  const handleModal = id => {
+    switch (id) {
+      case 1:
+        setTagModal(!isTagModal);
+        setLocationModal(false);
+        break;
+      case 2:
+        setLocationModal(!isLocationModal);
+        setTagModal(false);
+        break;
+      case 3:
+        setTagModal(false);
+        setLocationModal(false);
+    }
+  };
 
-  const fetchFilterData = async () => {
+  const fetchFirstData = async () => {
     const {
-      data: { tag, location, career },
-    } = await axios('/data/filterData.json');
-
-    setFilterData({
-      tagData: [tag],
-      locationData: [location],
-      careerData: [career],
+      data: {
+        data: { postings },
+        data: { locations },
+        data: { tags },
+        data: { categories },
+      },
+    } = await axios({
+      method: 'GET',
+      url: `${JOB_LIST}${urlQuery}`,
+    });
+    setPostingData(postings);
+    setLocationData(locations);
+    setTagData(tags);
+    setCategoryData(categories);
+    ssetModalNum({
+      tagNum: tags.length,
+      locationNum: locations.length,
     });
   };
 
   const handleSeperatedData = (tagData, locationData) => {
-    console.log('tagData,loca', tagData, locationData);
     let tagQuery = ``;
     let locationQuery = ``;
 
@@ -50,25 +77,40 @@ const BoardProvider = ({ children }) => {
     const encordedQuery = ('&' + tagQuery + locationQuery)
       .replace(/#/gi, '%23')
       .slice(0, -1);
+
+    setUrlQuery(encordedQuery);
     return encordedQuery;
   };
 
   const tagModalRequest = async () => {
     const tagData = requestFilterData.tag;
     const locationData = requestFilterData.location;
-    const query = handleSeperatedData(tagData, locationData);
+    handleSeperatedData(tagData, locationData);
     const {
-      data: { data },
-    } = await axios({
-      method: 'get',
-      url: `${JOB_LIST}${query}`,
+      data: {
+        data: { postings },
+        data: { locations },
+        data: { tags },
+        data: { categories },
+      },
+    } = await axios(
+      {
+        method: 'get',
+        url: `${JOB_LIST}${urlQuery}`,
+      },
+      () => console.log(urlQuery),
+    );
+    setPostingData(postings);
+    setLocationData(locations);
+    setTagData(tags);
+    setCategoryData(categories);
+    ssetModalNum({
+      tagNum: tags.length,
+      locationNum: locations.length,
     });
-    setPostData(data);
   };
 
   const handleTagModal = tagList => {
-    console.log(tagList);
-    console.log('hanlde2', requestFilterData);
     setRequestFetchFilterData({
       ...requestFilterData,
       tag: [...tagList],
@@ -87,9 +129,17 @@ const BoardProvider = ({ children }) => {
   return (
     <BoardContext.Provider
       value={{
-        filterData,
+        isTagModal,
+        isLocationModal,
+        postingData,
+        locationData,
+        tagData,
+        modalNum,
+        categoryData,
         handleTagModal,
         handleLocationModal,
+        handleModal,
+        fetchFirstData,
       }}
     >
       {children}

@@ -13,6 +13,7 @@ const BoardProvider = ({ children }) => {
   const [requestFilterData, setRequestFetchFilterData] = useState({
     tag: [],
     location: [],
+    filter: 'new',
   });
   const [modalNum, setModalNum] = useState({
     tagNum: 0,
@@ -51,8 +52,7 @@ const BoardProvider = ({ children }) => {
       },
     } = await axios({
       method: 'GET',
-      // url: `${JOB_LIST}${urlQuery}`, // 백엔드와 통신후 삭제하겠습니다,
-      url: 'data/allData.json',
+      url: `${JOB_LIST}`, // 백엔드와 통신후 삭제하겠습니다,
     });
     setPostingData(postings);
     setLocationData(locations);
@@ -64,7 +64,7 @@ const BoardProvider = ({ children }) => {
     });
   };
 
-  const handleSeperatedData = (tagData, locationData) => {
+  const handleSeperatedData = (tagData, locationData, filterData) => {
     let tagQuery = ``;
     let locationQuery = ``;
 
@@ -76,17 +76,21 @@ const BoardProvider = ({ children }) => {
       locationQuery = locationQuery + `location=${i.name}&`;
     }
 
-    const encordedQuery = ('&' + tagQuery + locationQuery)
-      .replace(/#/gi, '%23')
-      .slice(0, -1);
-
+    const encordedQuery = (
+      '&' +
+      tagQuery +
+      locationQuery +
+      'sorting=' +
+      filterData
+    ).replace(/#/gi, '%23');
     return encordedQuery;
   };
 
   const tagModalRequest = async () => {
     const tagData = requestFilterData.tag;
     const locationData = requestFilterData.location;
-    const urlQuery = handleSeperatedData(tagData, locationData);
+    const filterData = requestFilterData.filter;
+    const urlQuery = handleSeperatedData(tagData, locationData, filterData);
     const {
       data: {
         data: { postings },
@@ -96,18 +100,18 @@ const BoardProvider = ({ children }) => {
       },
     } = await axios({
       method: 'get',
-      // url: `${JOB_LIST}${urlQuery}`, //// 백엔드와 통신후 삭제하겠습니다,
-      url: 'data/allData.json',
+      url: `${JOB_LIST}${urlQuery}`,
     });
-    console.log(urlQuery); //백엔드와 통신 후 삭제하겠습니다.
+    console.log('urlQuery', urlQuery);
     setPostingData(postings);
     setLocationData(locations);
     setTagData(tags);
     setCategoryData(categories);
     setModalNum({
-      tagNum: tags.length,
-      locationNum: locations.length,
+      tagNum: tagData.length,
+      locationNum: locationData.length,
     });
+    console.log(modalNum);
   };
 
   const handleTagModal = tagList => {
@@ -121,6 +125,13 @@ const BoardProvider = ({ children }) => {
     setRequestFetchFilterData({
       ...requestFilterData,
       location: [...locationList],
+    });
+  };
+
+  const handleFilterData = filter => {
+    setRequestFetchFilterData({
+      ...requestFilterData,
+      filter: filter,
     });
   };
 
@@ -145,8 +156,6 @@ const BoardProvider = ({ children }) => {
   };
 
   const handleProfileEdit = (name, email, phoneNumber) => {
-    console.log('context', name, email, phoneNumber);
-
     const newProfile = {
       name,
       email,
@@ -190,6 +199,7 @@ const BoardProvider = ({ children }) => {
         fetchFirstData,
         fetchUserInfo,
         handleProfileEdit,
+        handleFilterData,
       }}
     >
       {children}

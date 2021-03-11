@@ -25,4 +25,10 @@ const TagModalContainer = styled.div`
   background-color: ${theme.white};
   width: 600px;
   height: 500px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-55%, -55%);
+  /* right: 1100px;
+  top: 80px; */
 `;

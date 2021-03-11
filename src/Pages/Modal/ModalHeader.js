@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { AiOutlineReload } from 'react-icons/ai';
 import { TiDeleteOutline } from 'react-icons/ti';
 import theme from '../../Styles/theme';
-import { VscCloseAll } from 'react-icons/vsc';
 import BoardContext from '../../BoardContext';
 
 function ModalHeader(data) {

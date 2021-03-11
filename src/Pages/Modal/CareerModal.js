@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import theme from '../../Styles/theme';
 import ModalHeader from './ModalHeader';
 
 function CareerModal() {
+  const [careerData, setCareerData] = useState([]);
+
   return (
     <CareerModalContainer>
       <ModalHeader />

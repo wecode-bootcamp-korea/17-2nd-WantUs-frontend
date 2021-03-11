@@ -5,9 +5,15 @@ import { GoTriangleDown } from 'react-icons/go';
 import BoardContext from '../../../../BoardContext';
 
 function Filter() {
-  const { handleModal, categoryData } = useContext(BoardContext);
+  const { handleModal, categoryData, handleFilterData } = useContext(
+    BoardContext,
+  );
   const handleClickedModal = id => {
     handleModal(id);
+  };
+
+  const handlePriority = e => {
+    handleFilterData(e.target.value);
   };
 
   return (
@@ -28,10 +34,10 @@ function Filter() {
           })}
         </div>
         <PriorityContainer>
-          <PrioritySelect>
+          <PrioritySelect onChange={e => handlePriority(e)}>
             {subFilterData.map(data => {
               return (
-                <PriorityOption value={data.id} key={data.id}>
+                <PriorityOption value={data.name} key={data.id}>
                   {data.content}
                 </PriorityOption>
               );
@@ -96,7 +102,7 @@ const filterData = [
 ];
 
 const subFilterData = [
-  { id: 1, content: '최신순' },
-  { id: 2, content: '보상금순' },
-  { id: 3, content: '인기순' },
+  { id: 1, content: '최신순', name: 'new' },
+  { id: 2, content: '보상금순', name: 'reward' },
+  { id: 3, content: '인기순', name: 'popular' },
 ];

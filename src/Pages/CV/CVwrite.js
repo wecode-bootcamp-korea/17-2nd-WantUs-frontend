@@ -8,12 +8,11 @@ class CVwrite extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: '',
-      name: '',
-      email: '',
-      phone: '',
-      intro: '',
-
+      title: '자기소개서',
+      name: '이름',
+      email: '@wecode.com',
+      phone: '010-1234-5678',
+      intro: '간단한 자기소개를 입력하세요',
       cvwriteList: [],
       cvIntro: [],
     };
@@ -21,11 +20,13 @@ class CVwrite extends React.Component {
 
   componentDidMount() {
     //백엔드 통신 요청
-    // fetch('http://10.58.1.89:8000/resume1', { method: 'GET' })
-    // fetch(`http://10.58.2.240:8000/product/${this.props.match.params.id}`)
-    fetch('/data/CVwriteData.json', {
+    fetch(`http://10.58.2.45:8000/resume/${this.props.match.params.id}`, {
       method: 'GET',
     })
+      // fetch(`http://10.58.1.89:8000/product/${this.props.match.params.id}`)
+      // fetch('/data/CVwriteData.json', {
+      //   method: 'GET',
+      // })
       .then(res => res.json())
       .then(res => {
         this.setState({
@@ -48,7 +49,6 @@ class CVwrite extends React.Component {
   };
 
   render() {
-    console.log(this.state.cvwriteList.email);
     return (
       <MainContainer>
         <ResumeBox>

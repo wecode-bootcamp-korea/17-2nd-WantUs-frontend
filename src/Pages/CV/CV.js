@@ -19,6 +19,8 @@ class CV extends React.Component {
       selectedFile: null,
       deleteUrl: [],
       image: '',
+      uploadFile: false,
+      pdfUrl: '',
     };
   }
 
@@ -26,7 +28,7 @@ class CV extends React.Component {
     this.handleData();
   }
   handleData(e) {
-    fetch('http://10.58.5.159:8000/resume', {
+    fetch('http://10.58.2.45:8000/resume', {
       // 백엔드 통신 요청
       // fetch(`http://10.58.2.240:8000/product/${this.props.match.params.id}`)
       // fetch('data/CVData.json', {
@@ -34,22 +36,24 @@ class CV extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
+        console.log({ res });
         this.setState({
           cvList: res.result,
         });
       });
   }
-  goToWrite = () => {
-    this.props.history.push('/cv/write');
+  goToWrite = id => {
+    this.props.history.push(`/cv/write/${id}`);
   };
 
-  delete = async info => {
+  delete = async (info, e) => {
+    e.stopPropagation();
     // mock data 사용시 필요한 코드
     // const remainItem = this.state.cvList.filter(cv => {
     //   return info.id !== cv.id;
     // });
 
-    await fetch(`http://10.58.5.159:8000/resume/${info}`, {
+    await fetch(`http://10.58.2.45:8000/resume/${info}`, {
       method: 'DELETE',
       // head사용시 필요한 코드
       // headers: {
@@ -64,8 +68,35 @@ class CV extends React.Component {
     // });
   };
 
+  showPDF = url => {
+    this.handleData();
+    setTimeout(() => window.open(url), 2000);
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.selectedFile !== this.state.selectedFile) {
+      const formData = new FormData();
+      formData.append('resume', this.state.selectedFile);
+      fetch(`http://10.58.2.45:8000/resume/upload`, {
+        method: 'POST',
+        // headers: {
+        //   Authorization: localStorage.getItem('accessToken'),
+        // },
+        body: formData,
+      })
+        .then(response => response.json())
+        .then(({ data }) => this.showPDF(data));
+    }
+  }
+
+  handleFileInput(e) {
+    this.setState({
+      selectedFile: e.target.files[0],
+    });
+  }
+
   sendResume = () => {
-    fetch(`http://10.58.5.159:8000/resume`, {
+    fetch(`http://10.58.2.45:8000/resume`, {
       method: 'POST',
 
       // head사용시 필요한 코드
@@ -75,10 +106,14 @@ class CV extends React.Component {
       body: JSON.stringify({
         resumeView: this.state.cvList.filter(info => info.id),
       }),
-    }).then(response => response.json());
+    })
+      .then(response => response.json())
+      .then(res => this.goToWrite());
   };
 
   render() {
+    console.log(this.state.cvList);
+
     return (
       <MainContainer>
         <CVContainer>
@@ -90,42 +125,83 @@ class CV extends React.Component {
             </ResemeInfo>
           </TitleBox>
           <CVBox>
-            <AlreadyExist>
-              <ResumeBox
-                onClick={() => {
-                  this.sendResume();
-                  this.goToWrite();
-                }}
-              >
-                <ResumeRound>
-                  <VscFiles size="25" color="white" />
-                </ResumeRound>
-                새 이력서 작성
-              </ResumeBox>
-              <ResumeBox>
-                <input
-                  type="file"
-                  name="file"
-                  onChange={e => this.handleFileInput(e)}
-                />
-                <NewRound>
-                  <BsUpload size="25" />
-                </NewRound>
-                파일 업로드
-              </ResumeBox>
-            </AlreadyExist>
             <NewComming>
-              {this.state.cvList.map(info => {
+              {this.state.cvList.map((info, index) => {
+                if (index === 0) {
+                  return (
+                    <>
+                      {' '}
+                      <AlreadyExist>
+                        <ResumeBox
+                          onClick={() => {
+                            this.sendResume();
+                          }}
+                        >
+                          <ResumeRound>
+                            <VscFiles size="25" color="white" />
+                          </ResumeRound>
+                          새 이력서 작성
+                        </ResumeBox>
+                        <ResumeBox>
+                          <input
+                            type="file"
+                            name="file"
+                            onChange={e => this.handleFileInput(e)}
+                          />
+                          <NewRound>
+                            <BsUpload size="25" />
+                          </NewRound>
+                          파일 업로드
+                        </ResumeBox>
+                      </AlreadyExist>
+                      <MatchUp
+                        onClick={
+                          info.status === '첨부파일'
+                            ? () => {}
+                            : () => this.goToWrite(info.id)
+                        }
+                        key={info.id}
+                        id={info.id}
+                      >
+                        <h3>{info.name}</h3>
+                        <Date>{info.date}</Date>
+                        {info.matchUp && <Title>매치업 이력서</Title>}
+                        {!info.matchUp && <TitleNo>추가 이력서</TitleNo>}
+                        <hr />
+                        <Writing>
+                          <RiFileWordLine size="22" className="wordicon" />
+                          <p>{info.status}</p>
+                          <Delete onClick={e => this.delete(info.id, e)}>
+                            <RiDeleteBin5Fill
+                              size="22"
+                              color="gray"
+                              className="icondot"
+                            />
+                          </Delete>
+                        </Writing>
+                      </MatchUp>
+                    </>
+                  );
+                }
                 return (
-                  <MatchUp onClick={this.goToWrite} key={info.id} id={info.id}>
+                  <MatchUp
+                    onClick={
+                      info.status === '첨부파일'
+                        ? () => {}
+                        : () => this.goToWrite(info.id)
+                    }
+                    key={info.id}
+                    id={info.id}
+                  >
                     <h3>{info.name}</h3>
                     <Date>{info.date}</Date>
-                    <Title>매치업 이력서</Title>
+                    {info.matchUp && <Title>매치업 이력서</Title>}
+                    {!info.matchUp && <TitleNo>추가 이력서</TitleNo>}
                     <hr />
                     <Writing>
                       <RiFileWordLine size="22" className="wordicon" />
                       <p>{info.status}</p>
-                      <Delete onClick={() => this.delete(info.id)}>
+                      <Delete onClick={e => this.delete(info.id, e)}>
                         <RiDeleteBin5Fill
                           size="22"
                           color="gray"
@@ -163,14 +239,15 @@ export default withRouter(CV);
 
 const MainContainer = styled.div`
   padding-top: 50px;
-  height: 1300px;
+  min-height: 1000px;
+  height: fit-content;
   background-color: #f8f8fa;
 `;
 
 const CVContainer = styled.div`
   margin: 35px auto;
   width: 1000px;
-  height: fit-content;
+  height: auto;
 `;
 
 const TitleBox = styled.div`
@@ -203,6 +280,7 @@ const AlreadyExist = styled.div`
   justify-content: space-between;
   width: 500px;
   padding-right: 13px;
+  margin-right: 16px;
 `;
 
 const NewComming = styled.div`
@@ -225,6 +303,7 @@ const ResumeBox = styled.div`
   border-radius: 4px;
   border: 1px solid lightgray;
   font-weight: bold;
+  z-index: 200;
   cursor: pointer;
 
   input {
@@ -297,6 +376,10 @@ const Title = styled.p`
   font-weight: 600;
   font-size: 16px;
   text-align: left;
+`;
+
+const TitleNo = styled(Title)`
+  color: gray;
 `;
 
 const Writing = styled.p`

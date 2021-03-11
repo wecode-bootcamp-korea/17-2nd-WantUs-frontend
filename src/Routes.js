@@ -28,10 +28,9 @@ function Routes() {
         <Route exact path="/cv/write" component={CVwrite} />
         <Route exact path="/detail/" component={JobDetail} />
         <Route exact path="/detail/:id" component={JobDetail} />
-        <Route exact path="/" component={Main} />
-        <Route exact path="/newintro" component={Newintro} />
         <Route exact path="/mypage" component={Mypage} />
         <Route exact path="/myprofile" component={MyProfile} />
+        <Route exact path="/cv/write/:id" component={CVwrite} />
       </Switch>
       <TagModal />
       <LocationModal />

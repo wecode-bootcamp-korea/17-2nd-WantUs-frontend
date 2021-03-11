@@ -33,10 +33,10 @@ function Routes() {
         <Route exact path="/mypage" component={Mypage} />
         <Route exact path="/myprofile" component={MyProfile} />
       </Switch>
-      {/* 
-      <Login />
       <TagModal />
       <LocationModal />
+      {/* 
+      <Login /> // 모두 해결후에 같이 붙이고 나서, 주석 삭제하갰습니다.
     */}
       <Footer />
     </Router>

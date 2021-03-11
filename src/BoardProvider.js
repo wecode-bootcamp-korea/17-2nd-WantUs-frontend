@@ -10,7 +10,6 @@ const BoardProvider = ({ children }) => {
   const [categoryData, setCategoryData] = useState([]);
   const [isTagModal, setTagModal] = useState(false);
   const [isLocationModal, setLocationModal] = useState(false);
-  const [urlQuery, setUrlQuery] = useState('');
   const [requestFilterData, setRequestFetchFilterData] = useState({
     tag: [],
     location: [],
@@ -23,7 +22,7 @@ const BoardProvider = ({ children }) => {
 
   useEffect(() => {
     tagModalRequest();
-  }, []);
+  }, [requestFilterData]);
 
   const handleModal = id => {
     switch (id) {
@@ -38,6 +37,7 @@ const BoardProvider = ({ children }) => {
       case 3:
         setTagModal(false);
         setLocationModal(false);
+      case 4:
     }
   };
 
@@ -51,13 +51,14 @@ const BoardProvider = ({ children }) => {
       },
     } = await axios({
       method: 'GET',
-      url: `${JOB_LIST}${urlQuery}`,
+      // url: `${JOB_LIST}${urlQuery}`, // 백엔드와 통신후 삭제하겠습니다,
+      url: 'data/allData.json',
     });
     setPostingData(postings);
     setLocationData(locations);
     setTagData(tags);
     setCategoryData(categories);
-    ssetModalNum({
+    setModalNum({
       tagNum: tags.length,
       locationNum: locations.length,
     });
@@ -79,14 +80,13 @@ const BoardProvider = ({ children }) => {
       .replace(/#/gi, '%23')
       .slice(0, -1);
 
-    setUrlQuery(encordedQuery);
     return encordedQuery;
   };
 
   const tagModalRequest = async () => {
     const tagData = requestFilterData.tag;
     const locationData = requestFilterData.location;
-    handleSeperatedData(tagData, locationData);
+    const urlQuery = handleSeperatedData(tagData, locationData);
     const {
       data: {
         data: { postings },
@@ -94,18 +94,17 @@ const BoardProvider = ({ children }) => {
         data: { tags },
         data: { categories },
       },
-    } = await axios(
-      {
-        method: 'get',
-        url: `${JOB_LIST}${urlQuery}`,
-      },
-      () => console.log(urlQuery),
-    );
+    } = await axios({
+      method: 'get',
+      // url: `${JOB_LIST}${urlQuery}`, //// 백엔드와 통신후 삭제하겠습니다,
+      url: 'data/allData.json',
+    });
+    console.log(urlQuery); //백엔드와 통신 후 삭제하겠습니다.
     setPostingData(postings);
     setLocationData(locations);
     setTagData(tags);
     setCategoryData(categories);
-    ssetModalNum({
+    setModalNum({
       tagNum: tags.length,
       locationNum: locations.length,
     });
@@ -116,7 +115,6 @@ const BoardProvider = ({ children }) => {
       ...requestFilterData,
       tag: [...tagList],
     });
-    tagModalRequest();
   };
 
   const handleLocationModal = locationList => {
@@ -124,7 +122,6 @@ const BoardProvider = ({ children }) => {
       ...requestFilterData,
       location: [...locationList],
     });
-    tagModalRequest();
   };
 
   const fetchUserInfo = () => {

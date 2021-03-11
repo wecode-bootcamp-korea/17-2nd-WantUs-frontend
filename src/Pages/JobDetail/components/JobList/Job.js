@@ -6,6 +6,8 @@ import { FaHeart } from 'react-icons/fa';
 const Job = ({ lastJobElementRef = null, job, history }) => {
   const goToDetailPage = job => {
     history.push(`/detail/${job.id}`);
+    window.location.reload(true);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -15,7 +17,7 @@ const Job = ({ lastJobElementRef = null, job, history }) => {
       onClick={() => goToDetailPage(job)}
     >
       <header>
-        <Image src={job.img}></Image>
+        <Image src={job.image}></Image>
         <button>
           <FaHeart className="icon" />
           {job.like}

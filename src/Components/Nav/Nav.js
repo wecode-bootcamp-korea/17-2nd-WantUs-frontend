@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import NavDetail from './NavDetail';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { VscBell } from 'react-icons/vsc';
 import { RiAccountCircleFill } from 'react-icons/ri';
+import BoardContext from '../../BoardContext';
+import LoginButton from './LoginButton';
 
 class Nav extends React.Component {
   constructor() {
@@ -12,6 +14,7 @@ class Nav extends React.Component {
     this.state = {
       category: [],
       hovervalue: '',
+      profileDrop: false,
     };
   }
   componentDidMount() {
@@ -50,10 +53,34 @@ class Nav extends React.Component {
     this.props.history.push('/explore');
   };
 
+  handleProfile = () => {
+    this.setState({
+      profileDrop: !this.state.profileDrop,
+    });
+  };
+
+  goToProfile = path => {
+    if (!sessionStorage.getItem('access_token')) {
+      alert('로그인이 필요한 서비스 입니다.');
+      return;
+    }
+
+    this.props.history.push(`/${path}`);
+    window.scrollTo(0, 0);
+  };
+
   render() {
     return (
       <>
         <NavContainer>
+          {this.state.profileDrop && (
+            <DropDownMenu>
+              <ul>
+                <li onClick={() => this.goToProfile('mypage')}>MY 원트어스</li>
+                <li onClick={() => this.goToProfile('myprofile')}>프로필</li>
+              </ul>
+            </DropDownMenu>
+          )}
           <NavmainBox>
             <NavLogo
               onMouseEnter={this.handleCategoryMouseHover}
@@ -83,9 +110,16 @@ class Nav extends React.Component {
               <Button>
                 <VscBell size="24" />
               </Button>
-              <Button>
+              <Button onClick={this.handleProfile}>
                 <RiAccountCircleFill size="24" />
               </Button>
+              {!sessionStorage.getItem('access_token') ? (
+                <LoginButton />
+              ) : (
+                <span onClick={() => sessionStorage.removeItem('access_token')}>
+                  Log out
+                </span>
+              )}
               <Button>
                 <CompanyService>기업서비스</CompanyService>
               </Button>
@@ -105,6 +139,25 @@ class Nav extends React.Component {
 }
 
 export default withRouter(Nav);
+
+const DropDownMenu = styled.div`
+  position: absolute;
+  top: 49px;
+  left: 60%;
+  width: 120px;
+  border: 1px solid #e1e2e3;
+  border-top: none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-color: inherit;
+
+  li {
+    padding: 15px 10px;
+    border-top: 1px solid #e1e2e3;
+    text-align: center;
+    cursor: pointer;
+  }
+`;
 
 const NavContainer = styled.div`
   position: fixed;

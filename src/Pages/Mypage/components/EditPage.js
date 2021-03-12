@@ -7,7 +7,6 @@ import BoardContext from '../../../BoardContext';
 
 const EditPage = () => {
   const { handleProfileEdit, userInfo } = useContext(BoardContext);
-
   const [name, setName] = useState(userInfo.name);
   const [email, setEmail] = useState(userInfo.email);
   const [phoneNumber, setPhoneNumber] = useState(userInfo.phoneNumber);
@@ -21,11 +20,6 @@ const EditPage = () => {
   };
 
   const handleSubmit = () => {
-    //백엔드 통신을 위해 남겨둡니다
-    // console.log('name : ', name);
-    // console.log('email : ', email);
-    // console.log('phoneNumber : ', phoneNumber);
-
     handleProfileEdit(name, email, phoneNumber);
   };
 

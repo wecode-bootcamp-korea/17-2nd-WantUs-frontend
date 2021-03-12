@@ -1,20 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import theme from '../../Styles/theme';
 import { FaRegEnvelope, FaComment, FaApple, FaGoogle } from 'react-icons/fa';
-import { SERVER, KAKAOLOGIN } from '../../config';
+import { KAKAOLOGIN } from '../../config';
+import BoardContext from '../../BoardContext';
 
 const KakaoInit = () => {
   Kakao.init('16d72c2ad8d1c5e1a9f98c6812b1a63e');
 };
 
 const Login = ({ history }) => {
-  const [isModalOpen, setModalOpen] = useState(true);
-
-  const handleModal = () => {
-    setModalOpen(prev => !prev);
-  };
+  const { handleModal, isLogin } = useContext(BoardContext);
 
   useEffect(() => {
     KakaoInit();
@@ -31,9 +28,10 @@ const Login = ({ history }) => {
           .then(result => {
             if (result.message === 'SUCCESS') {
               sessionStorage.setItem('access_token', result.accessToken);
-              // this.props.history.push('/');
+              handleModal(3);
               alert('로그인 성공');
             } else {
+              handleModal(3);
               alert('로그인 실패');
             }
           });
@@ -45,11 +43,11 @@ const Login = ({ history }) => {
   };
 
   return (
-    <LoginWrapper isModalOpen={isModalOpen}>
+    <LoginWrapper isModalOpen={isLogin}>
       <Modal>
         <ModalHeader>
           <h3>wantus</h3>
-          <span onClick={handleModal}>x</span>
+          <span onClick={() => handleModal(4)}>x</span>
         </ModalHeader>
         <ModalBody>
           <h1>
@@ -109,12 +107,16 @@ const Login = ({ history }) => {
 export default withRouter(Login);
 
 const LoginWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
   display: ${props => (props.isModalOpen ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100vh;
   background-color: #00000080;
+  z-index: 9999;
 `;
 
 const Modal = styled.div`

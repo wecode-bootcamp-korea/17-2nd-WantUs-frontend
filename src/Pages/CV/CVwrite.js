@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { HiDownload } from 'react-icons/hi';
 import CVwriteBottom from './CVwriteBottom';
 import CVdetail from './CVdetail';
+import { RESUME_API } from '../../config';
 
 class CVwrite extends React.Component {
   constructor() {
@@ -19,14 +20,12 @@ class CVwrite extends React.Component {
   }
 
   componentDidMount() {
-    //백엔드 통신 요청
-    fetch(`http://10.58.2.45:8000/resume/${this.props.match.params.id}`, {
+    fetch(`${RESUME_API}/${this.props.match.params.id}`, {
       method: 'GET',
+      headers: {
+        Authorization: sessionStorage.getItem('access_token'),
+      },
     })
-      // fetch(`http://10.58.1.89:8000/product/${this.props.match.params.id}`)
-      // fetch('/data/CVwriteData.json', {
-      //   method: 'GET',
-      // })
       .then(res => res.json())
       .then(res => {
         this.setState({

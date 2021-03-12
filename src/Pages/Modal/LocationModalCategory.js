@@ -75,8 +75,8 @@ function LocationModalCategory() {
       />
       <SubmitBtn
         onClick={() => {
-          stateList.length >= 1 && handleLocationModal(stateList);
-          stateList.length >= 1 && handleModal(3);
+          handleLocationModal(stateList);
+          handleModal(3);
         }}
       >
         확인

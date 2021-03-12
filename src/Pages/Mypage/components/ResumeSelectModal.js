@@ -17,13 +17,13 @@ const ResumeSelectModal = ({ handleResume }) => {
             <li>
               <div>
                 <RiPagesLine className="resumeIcon" />
-                <p>saemsol yoo 1</p>
+                <p>resume 1</p>
               </div>
             </li>
             <li>
               <div>
                 <RiPagesLine className="resumeIcon" />
-                <p>saemsol yoo 2</p>
+                <p>resume 2</p>
               </div>
             </li>
           </ul>

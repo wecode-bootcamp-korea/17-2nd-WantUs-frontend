@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import BoardContext from './BoardContext';
-import { JOB_LIST } from './config';
+import { JOB_LIST, APPLY, USER_PROFILE } from './config';
 
 const BoardProvider = ({ children }) => {
   const [postingData, setPostingData] = useState([]);
@@ -10,6 +10,7 @@ const BoardProvider = ({ children }) => {
   const [categoryData, setCategoryData] = useState([]);
   const [isTagModal, setTagModal] = useState(false);
   const [isLocationModal, setLocationModal] = useState(false);
+  const [isLogin, setLogin] = useState(false);
   const [requestFilterData, setRequestFetchFilterData] = useState({
     tag: [],
     location: [],
@@ -22,7 +23,9 @@ const BoardProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState();
 
   useEffect(() => {
-    tagModalRequest();
+    (requestFilterData.tag.length >= 1 ||
+      requestFilterData.location.length >= 1) &&
+      tagModalRequest();
   }, [requestFilterData]);
 
   const handleModal = id => {
@@ -30,15 +33,23 @@ const BoardProvider = ({ children }) => {
       case 1:
         setTagModal(!isTagModal);
         setLocationModal(false);
+        setLogin(false);
         break;
       case 2:
         setLocationModal(!isLocationModal);
         setTagModal(false);
+        setLogin(false);
         break;
       case 3:
         setTagModal(false);
         setLocationModal(false);
+        setLogin(false);
+        break;
       case 4:
+        setLogin(!isLogin);
+        setTagModal(false);
+        setLocationModal(false);
+        break;
     }
   };
 
@@ -102,7 +113,7 @@ const BoardProvider = ({ children }) => {
       method: 'get',
       url: `${JOB_LIST}${urlQuery}`,
     });
-    console.log('urlQuery', urlQuery);
+
     setPostingData(postings);
     setLocationData(locations);
     setTagData(tags);
@@ -111,7 +122,6 @@ const BoardProvider = ({ children }) => {
       tagNum: tagData.length,
       locationNum: locationData.length,
     });
-    console.log(modalNum);
   };
 
   const handleTagModal = tagList => {
@@ -136,23 +146,15 @@ const BoardProvider = ({ children }) => {
   };
 
   const fetchUserInfo = () => {
-    //목데이터
     axios({
       method: 'GET',
-      url: '/data/forLayout.json',
+      headers: {
+        Authorization: sessionStorage.getItem('access_token'),
+      },
+      url: `${APPLY}`,
     }).then(res => {
-      console.log(res);
-      setUserInfo(res.data.user);
+      setUserInfo(res.data.data);
     });
-
-    //채현님 통신
-    // axios({
-    //   method: 'GET',
-    //   url: 'http://10.58.5.159:8000/apply',
-    // }).then(res => {
-    //   console.log(res);
-    //   setUserInfo(res.data.user);
-    // });
   };
 
   const handleProfileEdit = (name, email, phoneNumber) => {
@@ -164,20 +166,17 @@ const BoardProvider = ({ children }) => {
 
     setUserInfo(newProfile);
 
-    //백엔드 POST fetch
     axios({
       method: 'PATCH',
-      url: 'http://10.58.1.39:8000/user/profile',
+      url: `${USER_PROFILE}`,
       headers: {
-        Authorization:
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.qrQ3NtQ0K5CilpjrwTQ-V7THX0lGegTYWZpPwBoUQw4',
+        Authorization: sessionStorage.getItem('access_token'),
       },
       data: {
         name,
         phoneNumber,
       },
     }).then(res => {
-      console.log(res);
       setUserInfo(res.data.user);
     });
   };
@@ -193,6 +192,7 @@ const BoardProvider = ({ children }) => {
         modalNum,
         categoryData,
         userInfo,
+        isLogin,
         handleTagModal,
         handleLocationModal,
         handleModal,

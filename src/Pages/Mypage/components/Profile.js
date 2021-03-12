@@ -3,38 +3,14 @@ import styled, { css } from 'styled-components';
 import theme from '../../../Styles/theme';
 import axios from 'axios';
 import BoardContext from '../../../BoardContext';
+import { APPLY } from '../../../config';
 
 const Profile = ({ handleEditMode, onEditMode }) => {
-  // const [userInfo, setUserInfo] = useState();
-
   const { fetchUserInfo, userInfo } = useContext(BoardContext);
 
-  //contextAPI
   useEffect(() => {
     fetchUserInfo();
   }, []);
-
-  //채현님 통신
-  // useEffect(() => {
-  //   axios({
-  //     method: 'GET',
-  //     url: 'http://10.58.5.159:8000/apply',
-  //   }).then(res => {
-  //     console.log(res);
-  //     setUserInfo(res.data.user);
-  //   });
-  // }, []);
-
-  //목데이터
-  // useEffect(() => {
-  //   axios({
-  //     method: 'GET',
-  //     url: '/data/forLayout.json',
-  //   }).then(res => {
-  //     console.log(res);
-  //     setUserInfo(res.data.user);
-  //   });
-  // }, []);
 
   return (
     <ProfileBox>

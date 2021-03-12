@@ -6,10 +6,7 @@ import { RiFileWordLine } from 'react-icons/ri';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { VscFiles } from 'react-icons/vsc';
 import { BsUpload } from 'react-icons/bs';
-//추가 구현 사항
-// import { BiDotsVerticalRounded } from 'react-icons/bi';
-// import { GoFile } from 'react-icons/go';
-import axios from 'axios';
+import { RESUME_API } from '../../config';
 
 class CV extends React.Component {
   constructor() {
@@ -25,18 +22,18 @@ class CV extends React.Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.handleData();
   }
   handleData(e) {
-    fetch('http://10.58.2.45:8000/resume', {
-      // 백엔드 통신 요청
-      // fetch(`http://10.58.2.240:8000/product/${this.props.match.params.id}`)
-      // fetch('data/CVData.json', {
+    fetch(`${RESUME_API}`, {
       method: 'GET',
+      headers: {
+        Authorization: sessionStorage.getItem('access_token'),
+      },
     })
       .then(res => res.json())
       .then(res => {
-        console.log({ res });
         this.setState({
           cvList: res.result,
         });
@@ -48,24 +45,13 @@ class CV extends React.Component {
 
   delete = async (info, e) => {
     e.stopPropagation();
-    // mock data 사용시 필요한 코드
-    // const remainItem = this.state.cvList.filter(cv => {
-    //   return info.id !== cv.id;
-    // });
-
-    await fetch(`http://10.58.2.45:8000/resume/${info}`, {
+    await fetch(`${RESUME_API}/${info}`, {
       method: 'DELETE',
-      // head사용시 필요한 코드
-      // headers: {
-      //   Authorization: localStorage.getItem('accessToken'),
-      // },
+      headers: {
+        Authorization: sessionStorage.getItem('access_token'),
+      },
     }).then(response => response.json());
     this.handleData();
-
-    // mock data 사용시 필요한 코드
-    // this.setState({
-    //   cvList: remainItem,
-    // });
   };
 
   showPDF = url => {
@@ -77,11 +63,11 @@ class CV extends React.Component {
     if (prevState.selectedFile !== this.state.selectedFile) {
       const formData = new FormData();
       formData.append('resume', this.state.selectedFile);
-      fetch(`http://10.58.2.45:8000/resume/upload`, {
+      fetch(`${RESUME_API}/upload`, {
         method: 'POST',
-        // headers: {
-        //   Authorization: localStorage.getItem('accessToken'),
-        // },
+        headers: {
+          Authorization: sessionStorage.getItem('access_token'),
+        },
         body: formData,
       })
         .then(response => response.json())
@@ -96,24 +82,20 @@ class CV extends React.Component {
   }
 
   sendResume = () => {
-    fetch(`http://10.58.2.45:8000/resume`, {
+    fetch(`${RESUME_API}`, {
       method: 'POST',
-
-      // head사용시 필요한 코드
-      // headers: {
-      //   Authorization: localStorage.getItem('accessToken'),
-      // },
+      headers: {
+        Authorization: sessionStorage.getItem('access_token'),
+      },
       body: JSON.stringify({
         resumeView: this.state.cvList.filter(info => info.id),
       }),
     })
       .then(response => response.json())
-      .then(res => this.goToWrite());
+      .then(res => this.goToWrite(res.result));
   };
 
   render() {
-    console.log(this.state.cvList);
-
     return (
       <MainContainer>
         <CVContainer>
@@ -126,108 +108,94 @@ class CV extends React.Component {
           </TitleBox>
           <CVBox>
             <NewComming>
-              {this.state.cvList.map((info, index) => {
-                if (index === 0) {
-                  return (
-                    <>
-                      {' '}
-                      <AlreadyExist>
-                        <ResumeBox
-                          onClick={() => {
-                            this.sendResume();
-                          }}
-                        >
-                          <ResumeRound>
-                            <VscFiles size="25" color="white" />
-                          </ResumeRound>
-                          새 이력서 작성
-                        </ResumeBox>
-                        <ResumeBox>
-                          <input
-                            type="file"
-                            name="file"
-                            onChange={e => this.handleFileInput(e)}
-                          />
-                          <NewRound>
-                            <BsUpload size="25" />
-                          </NewRound>
-                          파일 업로드
-                        </ResumeBox>
-                      </AlreadyExist>
-                      <MatchUp
-                        onClick={
-                          info.status === '첨부파일'
-                            ? () => {}
-                            : () => this.goToWrite(info.id)
-                        }
-                        key={info.id}
-                        id={info.id}
-                      >
-                        <h3>{info.name}</h3>
-                        <Date>{info.date}</Date>
-                        {info.matchUp && <Title>매치업 이력서</Title>}
-                        {!info.matchUp && <TitleNo>추가 이력서</TitleNo>}
-                        <hr />
-                        <Writing>
-                          <RiFileWordLine size="22" className="wordicon" />
-                          <p>{info.status}</p>
-                          <Delete onClick={e => this.delete(info.id, e)}>
-                            <RiDeleteBin5Fill
-                              size="22"
-                              color="gray"
-                              className="icondot"
+              {this.state.cvList &&
+                this.state.cvList.map((info, index) => {
+                  if (index === 0) {
+                    return (
+                      <>
+                        {' '}
+                        <AlreadyExist>
+                          <ResumeBox
+                            onClick={() => {
+                              this.sendResume();
+                            }}
+                          >
+                            <ResumeRound>
+                              <VscFiles size="25" color="white" />
+                            </ResumeRound>
+                            새 이력서 작성
+                          </ResumeBox>
+                          <ResumeBox>
+                            <input
+                              type="file"
+                              name="file"
+                              onChange={e => this.handleFileInput(e)}
                             />
-                          </Delete>
-                        </Writing>
-                      </MatchUp>
-                    </>
+                            <NewRound>
+                              <BsUpload size="25" />
+                            </NewRound>
+                            파일 업로드
+                          </ResumeBox>
+                        </AlreadyExist>
+                        <MatchUp
+                          onClick={
+                            info.status === '첨부파일'
+                              ? () => {}
+                              : () => this.goToWrite(info.id)
+                          }
+                          key={info.id}
+                          id={info.id}
+                        >
+                          <h3>{info.name}</h3>
+                          <Date>{info.date}</Date>
+                          {info.matchUp && <Title>매치업 이력서</Title>}
+                          {!info.matchUp && <TitleNo>추가 이력서</TitleNo>}
+                          <hr />
+                          <Writing>
+                            <RiFileWordLine size="22" className="wordicon" />
+                            <p>{info.status}</p>
+                            <Delete onClick={e => this.delete(info.id, e)}>
+                              <RiDeleteBin5Fill
+                                size="22"
+                                color="gray"
+                                className="icondot"
+                              />
+                            </Delete>
+                          </Writing>
+                        </MatchUp>
+                      </>
+                    );
+                  }
+                  return (
+                    <MatchUp
+                      onClick={
+                        info.status === '첨부파일'
+                          ? () => {}
+                          : () => this.goToWrite(info.id)
+                      }
+                      key={info.id}
+                      id={info.id}
+                    >
+                      <h3>{info.name}</h3>
+                      <Date>{info.date}</Date>
+                      {info.matchUp && <Title>매치업 이력서</Title>}
+                      {!info.matchUp && <TitleNo>추가 이력서</TitleNo>}
+                      <hr />
+                      <Writing>
+                        <RiFileWordLine size="22" className="wordicon" />
+                        <p>{info.status}</p>
+                        <Delete onClick={e => this.delete(info.id, e)}>
+                          <RiDeleteBin5Fill
+                            size="22"
+                            color="gray"
+                            className="icondot"
+                          />
+                        </Delete>
+                      </Writing>
+                    </MatchUp>
                   );
-                }
-                return (
-                  <MatchUp
-                    onClick={
-                      info.status === '첨부파일'
-                        ? () => {}
-                        : () => this.goToWrite(info.id)
-                    }
-                    key={info.id}
-                    id={info.id}
-                  >
-                    <h3>{info.name}</h3>
-                    <Date>{info.date}</Date>
-                    {info.matchUp && <Title>매치업 이력서</Title>}
-                    {!info.matchUp && <TitleNo>추가 이력서</TitleNo>}
-                    <hr />
-                    <Writing>
-                      <RiFileWordLine size="22" className="wordicon" />
-                      <p>{info.status}</p>
-                      <Delete onClick={e => this.delete(info.id, e)}>
-                        <RiDeleteBin5Fill
-                          size="22"
-                          color="gray"
-                          className="icondot"
-                        />
-                      </Delete>
-                    </Writing>
-                  </MatchUp>
-                );
-              })}
+                })}
             </NewComming>
-            {/* 추가구현사항 */}
-            {/* <MatchUp>
-              <AttachedFile>WantUs_resume</AttachedFile>
-              <Day>2021. 03. 02</Day>
-              <hr />
-              <Writing>
-                <GoFile size="22" className="wordicon" color="black" />
-                <Attached>첨부 완료</Attached>
-                <BiDotsVerticalRounded
-                  size="22"
-                  className="icondot"
-                  color="black"
-                />
-              </Writing>
-            </MatchUp> */}
           </CVBox>
         </CVContainer>
       </MainContainer>

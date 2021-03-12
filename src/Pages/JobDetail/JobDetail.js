@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import JobList from './components/JobList/JobList';
 import styled from 'styled-components';
 import axios from 'axios';
 import { FaRegBookmark, FaBookmark, FaHeart } from 'react-icons/fa';
 import theme from '../../Styles/theme';
+import BoardContext from '../../BoardContext';
+import { JOB_DETAIL, RESUME_API, APPLY } from '../../config';
 
 const JobDetail = ({ history, match }) => {
   const [jobDetailData, setJobDetailData] = useState([]);
@@ -17,8 +19,8 @@ const JobDetail = ({ history, match }) => {
   const [userName, setUserName] = useState();
   const [userEmail, setUserEmail] = useState();
   const [userPhoneNumber, setUserPhoneNumber] = useState();
+  const { handleModal } = useContext(BoardContext);
 
-  //백엔드통신
   useEffect(() => {
     const token = sessionStorage.getItem('access_token') && {
       Authorization: sessionStorage.getItem('access_token'),
@@ -26,10 +28,9 @@ const JobDetail = ({ history, match }) => {
 
     axios({
       method: 'GET',
-      url: `http://10.58.2.243:8000/posting/${match.params.id}`,
+      url: `${JOB_DETAIL}/${match.params.id}`,
       headers: token,
     }).then(res => {
-      console.log(res.data.data[0]);
       setJobDetailData(res.data.data[0]);
       setBookmark(res.data.data[0].userBookmark);
       setLike(res.data.data[0].userLike);
@@ -41,27 +42,35 @@ const JobDetail = ({ history, match }) => {
   }, []);
 
   const handleBookmark = () => {
+    if (!sessionStorage.getItem('access_token')) {
+      handleModal(4);
+      return;
+    }
+
     axios({
       method: 'POST',
-      url: `http://10.58.2.243:8000/posting/bookmark/${match.params.id}`,
+      url: `${JOB_DETAIL}/bookmark/${match.params.id}`,
       headers: {
         Authorization: sessionStorage.getItem('access_token'),
       },
     }).then(res => {
-      console.log(res);
       setBookmark(prevStatus => !prevStatus);
     });
   };
 
   const handleLike = () => {
+    if (!sessionStorage.getItem('access_token')) {
+      handleModal(4);
+      return;
+    }
+
     axios({
       method: 'POST',
-      url: `http://10.58.2.243:8000/posting/like/${match.params.id}`,
+      url: `${JOB_DETAIL}/like/${match.params.id}`,
       headers: {
         Authorization: sessionStorage.getItem('access_token'),
       },
     }).then(res => {
-      console.log(res);
       setLike(prevStatus => !prevStatus);
       like
         ? setNumberOfLike(like => like - 1)
@@ -70,6 +79,10 @@ const JobDetail = ({ history, match }) => {
   };
 
   const handleApply = () => {
+    if (!sessionStorage.getItem('access_token')) {
+      handleModal(4);
+      return;
+    }
     setApply(prevStatus => !prevStatus);
   };
 
@@ -92,14 +105,13 @@ const JobDetail = ({ history, match }) => {
     };
 
     return axios
-      .post('http://10.58.2.243:8000/resume/upload', formData, config)
+      .post(`${RESUME_API}/upload`, formData, config)
       .then(res => {
         setPdfUrl(res.data.data);
         alert('성공');
         postApply();
       })
       .catch(err => {
-        console.log(err);
         alert('실패');
       });
   };
@@ -107,15 +119,13 @@ const JobDetail = ({ history, match }) => {
   const postApply = () => {
     axios({
       method: 'POST',
-      url: `http://10.58.1.39:8000/apply`,
+      url: `${APPLY}`,
       headers: {
         Authorization: sessionStorage.getItem('access_token'),
       },
       data: {
         posting: match.params.id,
       },
-    }).then(res => {
-      console.log(res);
     });
   };
 

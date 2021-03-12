@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../../../Styles/theme';
 import axios from 'axios';
+import { MY_WANTUS } from '../../../config';
 
 const UserData = ({ history }) => {
   const [bookmarkShowAll, setBookmarkShowAll] = useState(false);
@@ -17,46 +18,23 @@ const UserData = ({ history }) => {
   };
 
   const goToDetail = job => {
-    console.log(job);
     history.push(`/detail/${job.id}`);
     window.scrollTo(0, 0);
   };
 
-  //채현님 통신
-  // useEffect(() => {
-  //   axios({
-  //     method: 'GET',
-  //     url: 'http://10.58.5.159:8000/apply',
-  //   }).then(res => {
-  //     console.log(res.data.book);
-  //     setBookmarkList(res.data.book);
-  //     setLikesList(res.data.like);
-  //     setApplyStatus(res.data.apply);
-  //   });
-  // }, []);
-
   useEffect(() => {
     axios({
       method: 'GET',
-      url: '/data/forLayout.json',
+      url: `${MY_WANTUS}`,
+      headers: {
+        Authorization: sessionStorage.getItem('access_token'),
+      },
     }).then(res => {
       setBookmarkList(res.data.book);
       setLikesList(res.data.like);
       setApplyStatus(res.data.apply);
     });
   }, []);
-
-  //목데이터
-  // useEffect(() => {
-  //   axios({
-  //     method: 'GET',
-  //     url: '/data/myWantedData.json',
-  //   }).then(res => {
-  //     setBookmarkList(res.data[0].book);
-  //     setLikesList(res.data[0].like);
-  //     setApplyStatus(res.data[0].apply);
-  //   });
-  // }, []);
 
   return (
     <UserDataContainer>

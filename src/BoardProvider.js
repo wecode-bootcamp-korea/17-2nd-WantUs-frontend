@@ -63,7 +63,7 @@ const BoardProvider = ({ children }) => {
       },
     } = await axios({
       method: 'GET',
-      url: `${JOB_LIST}`, // 백엔드와 통신후 삭제하겠습니다,
+      url: `${JOB_LIST}`,
     });
     setPostingData(postings);
     setLocationData(locations);
